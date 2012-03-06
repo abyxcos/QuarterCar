@@ -89,7 +89,7 @@ xlabel('Body velocity from ground');
         m=[ms 0; 0 mu;];
         b=[bs -bs; -bs (bs+bu);];
         k=[ks -ks; -ks (ks+ku);];
-        F=[0-ms*9.81; -(mu)*9.81;];
+        F=[0-ms*9.81; 0;];
         %F = [-ms*9.81; 0];
         %F=[0; 0;];
         %g=[ms*9.81; (ms+mu)*9.81;];

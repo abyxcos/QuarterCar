@@ -1,6 +1,6 @@
 % Half Car Model
 
-% modelHale - Determines the new xdot values for the half car
+% modelHalf - Determines the new xdot values for the half car
 % Parameters:
 %     t - The current time
 %     x - The current state of the model
@@ -64,8 +64,8 @@ function xdot = modelHalf(t, x, p)
     F = [0; 0; 0*p.kt; 0*p.kt];
     
     % Pull out position and velocity, calculate acceleration.
-    pos = [x(1); x(2)];
-    vel = [x(3); x(4)];
+    pos = [x(1); x(2); x(3); x(4)];
+    vel = [x(5); x(6); x(7); x(8)];
     accel = m \ (F - b*vel - k*pos);
     
     % Package the data in the output

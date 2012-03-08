@@ -13,7 +13,7 @@ f_car.a1 = 1.4;
 f_car.a2 = 1.47;
 f_car.b1 = 0.7;
 f_car.b2 = 0.75;
-f_car.w = b1+b2;
+f_car.w = f_car.b1 + f_car.b2;
 
 % Springs
 f_car.kf = 10000;

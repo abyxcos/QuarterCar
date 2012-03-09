@@ -23,8 +23,8 @@ function xdot = modelQuarter(t, x, p)
     
     % Input disturbance matrix
     % TODO : Revise to actual model; add Force Function
-    F = [0-p.ms*p.grav;
-        0];
+    F = [-p.ms*p.grav;
+        p.ku*disturbance_step(t)];
     
     % Pull out position and velocity, calculate acceleration.
     pos = [x(1); x(2)];

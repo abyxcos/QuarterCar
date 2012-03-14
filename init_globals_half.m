@@ -2,7 +2,7 @@
 % This script initializes the global variables used in the half car model.
 
 % Half-car Masses
-h_car.mu = 840/2;    % Body mass
+h_car.ms = 840/2;    % Body mass
 h_car.m1 = 53;       % Tire mass
 h_car.m2 = 53;       % Tire mass
 h_car.Ix = 820;      % Body inertia

@@ -16,3 +16,15 @@ q_car.bu = 0;       % Tire
 
 % Gravity
 q_car.grav = 9.81;
+
+% Mass Matrix
+q_car.m = [q_car.ms 0;
+          0 q_car.mu];
+
+% Damper matrix
+q_car.b = [q_car.bs -q_car.bs;
+          -q_car.bs (q_car.bs+q_car.bu)];
+
+% Spring matrix
+q_car.k = [q_car.ks -q_car.ks;
+          -q_car.ks (q_car.ks+q_car.ku)];

@@ -7,6 +7,9 @@ function plotQuarter(t, x)
     % Run the quarter car model
     [t,x]=ode45(@(t,x) modelQuarter(t, x, q_car), [0 5], [0; 0; 0; 0]);
     
+    % Run the inverse quarter car model
+    %y=modelQuarterInverse(t, x, q_car);
+    
     % Generate the plots
     subplot(1,4,1);
     plot(t,x(:,1));

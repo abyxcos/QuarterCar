@@ -7,12 +7,12 @@
 %     p - The model parameters
 % Returns:
 %     The disturbance input to the car
-function y = modelQuarter(t, x, p)
+function y = modelQuarter(t, x, a, p)
 
     % Pull out position, velocity, and acceleration.
     pos = [x(1); x(2)];
     vel = [x(3); x(4)];
-    accel = [x(5); x(6)];
+    accel = [a(1); a(2)];
 
     % Calculate the disturbance input matrix
     F = p.m*accel + p.b*vel + p.k*pos;

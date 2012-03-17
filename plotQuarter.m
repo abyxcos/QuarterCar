@@ -11,11 +11,16 @@ function plotQuarter(t, x)
     F1 = diff(x(:, 3))./diff(t);
     F2 = diff(x(:, 4))./diff(t);
     tt = 0:(t(end) / (length(F1) - 1)):t(end);
-    
+
     % Run the inverse quarter car model
-    %y=modelQuarterInverse(t, x, q_car);
+    y=zeros([1,length(t)-1]);
+    for i=1:length(t)-1
+        y(i)=modelQuarterInverse(t(i), x(i,:), [F1(i) F2(i)], q_car);
+        disturbance(i)=disturbance_step(t(i));
+    end
     
     % Generate the plots
+    figure
     subplot(1, 6, 1);
     plot(t, x(:, 1));
     xlabel('x_s (offset of body)');
@@ -33,10 +38,16 @@ function plotQuarter(t, x)
     xlabel('v_u (velocity of tire)');
 
     subplot(1, 6, 5);
-    plot(tt, F1);
+    plot(t(1:end-1), F1);
     xlabel('a_s (acceleration of body)');
 
     subplot(1, 6, 6);
-    plot(tt, F2);
+    plot(t(1:end-1), F2);
     xlabel('a_u (acceleration of tire)');
+    
+    figure
+    hold on
+    plot(t(1:end-1),y);
+    plot(t(1:end-1),disturbance,'r');
+    xlabel('input disturbance (from inverse dynamics)');
 end

@@ -11,7 +11,7 @@ q_car.ks = 35000;   % Shocks
 q_car.ku = 193000;  % Tire
 
 % Dampers
-q_car.bs = 2000;    % Shocks
+q_car.bs = 2400;    % Shocks
 q_car.bu = 0;       % Tire
 
 % Gravity

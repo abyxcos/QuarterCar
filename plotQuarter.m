@@ -12,6 +12,9 @@ function plotQuarter(t, x)
     F2 = diff(x(:, 4))./diff(t);
     tt = 0:(t(end) / (length(F1) - 1)):t(end);
     
+    % Run the inverse quarter car model
+    %y=modelQuarterInverse(t, x, q_car);
+    
     % Generate the plots
     subplot(1, 6, 1);
     plot(t, x(:, 1));

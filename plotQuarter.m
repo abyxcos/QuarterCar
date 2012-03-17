@@ -14,6 +14,7 @@ function plotQuarter(t, x)
 
     % Run the inverse quarter car model
     y=zeros([1,length(t)-1]);
+    disturbance=zeros([1,length(t)-1]);
     for i=1:length(t)-1
         y(i)=modelQuarterInverse(t(i), x(i,:), [F1(i) F2(i)], q_car);
         disturbance(i)=disturbance_step(t(i));

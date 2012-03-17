@@ -9,9 +9,11 @@
 %     The xdot for the model in its current state
 function xdot = modelHalf(t, x, p)
 
+    global g;
+
     % Input disturbance matrix
     % TODO : Different steps per wheel???
-    F = [-p.ms*p.grav; 0; p.kt*disturbance_step(t); p.kt*disturbance_step(t)];
+    F = [-p.ms*g; 0; p.kt*disturbance_step(t); p.kt*disturbance_step(t)];
 
     % Pull out position and velocity, calculate acceleration.
     pos = [x(1); x(2); x(3); x(4)];

@@ -1,5 +1,4 @@
 % Ground distrubance(s)
-
 function y=disturbance_step(t)
     global bump_height;
     y=0;

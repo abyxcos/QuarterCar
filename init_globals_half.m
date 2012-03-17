@@ -19,9 +19,6 @@ h_car.kt = 200000;
 % Dampers
 h_car.bu = 4800;     % Shocks
 
-% Gravity
-h_car.grav = 9.81;
-
 % Mass matrix
 h_car.m = [h_car.ms 0 0 0;
           0 h_car.Ix 0 0;

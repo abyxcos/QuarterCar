@@ -14,9 +14,6 @@ q_car.ku = 193000;  % Tire
 q_car.bs = 2400;    % Shocks
 q_car.bu = 0;       % Tire
 
-% Gravity
-q_car.grav = 9.81;
-
 % Mass Matrix
 q_car.m = [q_car.ms 0;
           0 q_car.mu];

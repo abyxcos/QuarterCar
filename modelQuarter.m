@@ -8,9 +8,10 @@
 % Returns:
 %     The xdot for the model in its current state
 function xdot = modelQuarter(t, x, p)
-
+    global g;
+    
     % Input disturbance matrix
-    F = [-p.ms*p.grav;
+    F = [-p.ms*g;
         p.ku*disturbance_step(t)];
 
     % Pull out position and velocity, calculate acceleration.

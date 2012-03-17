@@ -3,6 +3,7 @@ function plotQuarter(t, x)
     % Set up enviornment for the quarter car model
     init_globals;
     init_globals_quarter;
+    
     % Run the quarter car model
     [t,x]=ode45(@(t,x) modelQuarter(t, x, q_car), [0 5], [0; 0; 0; 0]);
     

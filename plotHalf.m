@@ -13,13 +13,29 @@ function plotHalf(t, x)
 
     subplot(2,4,2);
     plot(t,x(:,2));
-    xlabel('x_u (offset of tire)');
+    xlabel('\theta (tilt of roll)');
 
     subplot(2,4,3);
     plot(t,x(:,3));
-    xlabel('v_s (velocity of body)');
+    xlabel('x_1 (offset of left tire)');
 
     subplot(2,4,4);
     plot(t,x(:,4));
-    xlabel('v_u (velocity of tire)');
+    xlabel('x_2 (offset of right tire)');
+    
+    subplot(2,4,5);
+    plot(t,x(:,5));
+    xlabel('x_s (velocity of body)');
+
+    subplot(2,4,6);
+    plot(t,x(:,6));
+    xlabel('\omega (velocity of roll)');
+
+    subplot(2,4,7);
+    plot(t,x(:,7));
+    xlabel('v_1 (velocity of left tire)');
+
+    subplot(2,4,8);
+    plot(t,x(:,8));
+    xlabel('v_2 (velocity of right tire)');
 end

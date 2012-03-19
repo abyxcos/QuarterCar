@@ -22,6 +22,12 @@ function plotQuarter(t, x)
         disturbance(i)=disturbance_step(t(i));
     end
     
+    % Calculate the error between the input and the inverse
+    error=zeros([1, length(t)-1]);
+    for i=1:length(t)-1
+        error(i)=y(i)-disturbance_step(t(i));
+    end
+    
     % Generate the plots
     figure
     subplot(1, 6, 1);
@@ -50,8 +56,12 @@ function plotQuarter(t, x)
     
     figure
     hold on
-    plot(t(1:end-1),y);
-    plot(t(1:end-1),disturbance,'r');
+    subplot(1, 2, 1);
+    plot(t(1:end-1),y,t(1:end-1),disturbance,'r');
     xlabel('input disturbance (from inverse dynamics)');
     ylabel('height (meters)');
+    
+    subplot(1, 2, 2);
+    plot(t(1:end-1),error);
+    ylabel('estimation error (meters)');
 end

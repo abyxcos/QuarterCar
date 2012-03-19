@@ -17,10 +17,12 @@ function plotHalf(t, x)
     tt = 0:(t(end) / (length(F1) - 1)):t(end);
 
     % Run the inverse quarter car model
-    y=zeros([1,length(t)-1]);
+    y=zeros([2, length(t)-1]);
     disturbance=zeros([1,length(t)-1]);
     for i=1:length(t)-1
-        y(i)=modelHalfInverse(t(i), x(i,:), [F1(i) F2(i) F3(i) F4(i)], h_car);
+        temp=modelHalfInverse(t(i), x(i,:), [F1(i) F2(i) F3(i) F4(i)], h_car);
+        y(1, i) = temp(1);
+        y(2, i) = temp(2);
         disturbance(i)=disturbance_step(t(i));
     end
     
@@ -60,7 +62,7 @@ function plotHalf(t, x)
     
     figure
     hold on
-    plot(t(1:end-1),y);
+    plot(t(1:end-1),y(1, :));
     plot(t(1:end-1),disturbance,'r');
     xlabel('input disturbance (from inverse dynamics)');
     ylabel('height (meters)');

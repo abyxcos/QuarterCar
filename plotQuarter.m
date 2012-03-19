@@ -1,5 +1,7 @@
 % Generate the appropriate plots for the quarter car model
 function plotQuarter(t, x)
+    close all;
+    
     % Set up enviornment for the quarter car model
     init_globals;
     init_globals_quarter;
@@ -51,4 +53,5 @@ function plotQuarter(t, x)
     plot(t(1:end-1),y);
     plot(t(1:end-1),disturbance,'r');
     xlabel('input disturbance (from inverse dynamics)');
+    ylabel('height (meters)');
 end

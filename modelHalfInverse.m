@@ -7,16 +7,16 @@
 %     p - The model parameters
 % Returns:
 %     The disturbance input to the car
-function y = modelHalfInverse(t, x, p)
+function y = modelHalfInverse(t, x, a, p)
 
     % Input disturbance matrix
     % TODO : Different steps per wheel???
-    F = [-p.ms*p.grav; 0; p.kt*disturbance_step(t); p.kt*disturbance_step(t)];
+    %F = [-p.ms*p.grav; 0; p.kt*disturbance_step(t); p.kt*disturbance_step(t)];
 
     % Pull out position and velocity, calculate acceleration.
     pos = [x(1); x(2); x(3); x(4)];
     vel = [x(5); x(6); x(7); x(8)];
-    accel = [x(9); x(10); x(11); x(12)];
+    accel = [a(1); a(2); a(3); a(4)];
 
      % Calculate the disturbance input matrix
     F = p.m*accel + p.b*vel + p.k*pos;

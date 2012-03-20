@@ -17,13 +17,16 @@ function plotQuarter(t, x)
     % Run the inverse quarter car model
     y=zeros([1,length(t)-1]);
     disturbance=zeros([1,length(t)-1]);
-    for i=1:length(t)-1
-        y(i)=modelQuarterInverse(t(i), x(i,:), [F1(i) F2(i)], q_car);
+    y_p = 0;
+    for i=2:length(t)
+        %y(i)=modelQuarterInverse(t(i), x(i,:), [F1(i) F2(i)], q_car);
+        y(i)=modelQuarterInverse2(t(i), x(i,:), x(i-1,:), y_p, q_car);
+        y_p = y(i);
         disturbance(i)=disturbance_step(t(i));
     end
     
     % Calculate the error between the input and the inverse
-    error=zeros([1, length(t)-1]);
+    error=zeros([1, length(t)]);
     for i=1:length(t)-1
         error(i)=y(i)-disturbance_step(t(i));
     end
@@ -57,11 +60,11 @@ function plotQuarter(t, x)
     figure
     hold on
     subplot(1, 2, 1);
-    plot(t(1:end-1),y,t(1:end-1),disturbance,'r');
+    plot(t,y,t,disturbance,'r');
     xlabel('input disturbance (from inverse dynamics)');
     ylabel('height (meters)');
     
     subplot(1, 2, 2);
-    plot(t(1:end-1),error);
+    plot(t,error);
     ylabel('estimation error (meters)');
 end

@@ -16,7 +16,7 @@ function plotHalf(t, x)
     F4 = diff(x(:, 8))./diff(t);
     tt = 0:(t(end) / (length(F1) - 1)):t(end);
 
-    % Run the inverse quarter car model
+    % Run the inverse half car model
     y=zeros([2, length(t)-1]);
     disturbance=zeros([1,length(t)-1]);
     for i=1:length(t)-1
@@ -24,6 +24,12 @@ function plotHalf(t, x)
         y(1, i) = temp(1);
         y(2, i) = temp(2);
         disturbance(i)=disturbance_step(t(i));
+    end
+    
+    % Calculate the error between the input and the inverse
+    error=zeros([1, length(t)-1]);
+    for i=1:length(t)-1
+        error(i)=y(i)-disturbance_step(t(i));
     end
     
     % Generate the plots
@@ -62,8 +68,15 @@ function plotHalf(t, x)
     
     figure
     hold on
-    plot(t(1:end-1),y(1, :));
-    plot(t(1:end-1),disturbance,'r');
+    subplot(1,3,1);
+    plot(t(1:end-1),y(1, :), t(1:end-1),disturbance,'r');
     xlabel('input disturbance (from inverse dynamics)');
     ylabel('height (meters)');
+    
+    subplot(1,3,2);
+    plot(t(1:end-1),y(2, :), t(1:end-1),disturbance,'r');
+    
+    subplot(1,3,3);
+    plot(t(1:end-1),error);
+    ylabel('estimation error (meters)');
 end

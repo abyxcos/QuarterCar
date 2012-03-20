@@ -8,6 +8,7 @@
 % Returns:
 %     The disturbance input to the car
 function y = modelQuarter(t, x, a, p)
+    global g;
 
     % Pull out position, velocity, and acceleration.
     pos = [x(1); x(2)];

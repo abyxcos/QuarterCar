@@ -23,6 +23,6 @@ function y = modelHalfInverse(t, x, a, p)
 
     % Pull out the input
     y = [0; 0];
-    y(1) = F(3) / p.kt;
-    y(2) = F(4) / p.kt;
+    %y(1) = F(3) / p.kt;
+    %y(2) = F(4) / p.kt;
 end

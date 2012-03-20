@@ -7,7 +7,7 @@ function plotQuarter(t, x)
     init_globals_quarter;
     
     % Run the quarter car model
-    [t, x] = ode45(@(t, x) modelQuarter(t, x, q_car), [0 5], [0; 0; 0; 0]);
+    [t, x] = ode45(@(t, x) modelQuarter(t, x, q_car), [0 10], [0; 0; 0; 0]);
 
     % Determine the accelerations based off the returned velocities
     F1 = diff(x(:, 3))./diff(t);
@@ -23,10 +23,13 @@ function plotQuarter(t, x)
     end
     
     % Calculate the error between the input and the inverse
-    error=zeros([1, length(t)-1]);
-    for i=1:length(t)-1
-        error(i)=y(i)-disturbance_step(t(i));
-    end
+%     error=zeros([1, length(t)-1]);
+%     for i=1:length(t)-1
+%         error(i)=y(i)-disturbance_step(t(i));
+%     end
+    body_pos = x(:, 1);
+    body_pos(end) = [];
+    error = y - body_pos';
     
     % Generate the plots
     figure

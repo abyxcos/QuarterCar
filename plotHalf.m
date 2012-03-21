@@ -38,77 +38,103 @@ function plotHalf(t, x)
     
     % Generate the plots
     figure
-    subplot(2,4,1);
+    subplot(2,2,1);
     plot(t,x(:,1));
     title('x_s (offset of body)');
     ylabel('Meters');
     xlabel('Time (seconds)');
 
-    subplot(2,4,2);
+    subplot(2,2,2);
     plot(t,x(:,2));
     title('\theta (tilt of roll)');
     ylabel('Radians');
     xlabel('Time (seconds)');
 
-    subplot(2,4,3);
+    subplot(2,2,3);
     plot(t,x(:,3));
     title('x_1 (offset of left tire)');
     ylabel('Meters');
     xlabel('Time (seconds)');
 
-    subplot(2,4,4);
+    subplot(2,2,4);
     plot(t,x(:,4));
     title('x_2 (offset of right tire)');
     ylabel('Meters');
     xlabel('Time (seconds)');
     
-    subplot(2,4,5);
+    figure
+    subplot(2,2,1);
     plot(t,x(:,5));
     title('x_s (velocity of body)');
     ylabel('Meters/Second');
     xlabel('Time (seconds)');
 
-    subplot(2,4,6);
+    subplot(2,2,2);
     plot(t,x(:,6));
     title('\omega (velocity of roll)');
     ylabel('Radians/Second');
     xlabel('Time (seconds)');
 
-    subplot(2,4,7);
+    subplot(2,2,3);
     plot(t,x(:,7));
     title('v_1 (velocity of left tire)');
     ylabel('Meters/Second');
     xlabel('Time (seconds)');
 
-    subplot(2,4,8);
+    subplot(2,2,4);
     plot(t,x(:,8));
     title('v_2 (velocity of right tire)');
     ylabel('Meters/Second');
     xlabel('Time (seconds)');
     
     figure
+    subplot(2, 2, 1);
+    plot(t(1:end-1), F1);
+    xlabel('time (seconds)');
+    ylabel('acceleration (meters/second^2)');
+    title('a_s (acceleration of body)');
+    
+    subplot(2, 2, 2);
+    plot(t(1:end-1), F2);
+    xlabel('time (seconds)');
+    ylabel('acceleration (radians/second^2)');
+    title('\alpha (acceleration of roll)');
+    
+    subplot(2, 2, 3);
+    plot(t(1:end-1), F3);
+    xlabel('time (seconds)');
+    ylabel('acceleration (meters/second^2)');
+    title('a_1 (acceleration of left tire)');
+    
+    subplot(2, 2, 4);
+    plot(t(1:end-1), F4);
+    xlabel('time (seconds)');
+    ylabel('acceleration (meters/second^2)');
+    title('a_2 (acceleration of right tire)');
+    
+    figure
     hold on
-    subplot(1,4,1);
+    subplot(2,2,1);
     plot(t,y(1, :), t,disturbance,'r');
     title('Input Disturbance (y_1)');
     legend('Calculated Disturbance', 'Actual Disturbance');
     xlabel('Time (seconds)');
     ylabel('Meters');
     
-    subplot(1,4,2);
+    subplot(2,2,2);
     plot(t,y(2, :), t,disturbance,'r');
     title('Input Disturbance (y_2)');
     legend('Calculated Disturbance', 'Actual Disturbance');
     xlabel('Time (seconds)');
     ylabel('Meters');
     
-    subplot(1,4,3);
+    subplot(2,2,3);
     plot(t,error(1, :));
     title('Estimation Error for y_2');
     ylabel('Meters');
     xlabel('Time (seconds)');
 
-    subplot(1,4,4);
+    subplot(2,2,4);
     plot(t,error(2, :));
     title('Estimation Error for y_2');
     ylabel('Meters');

@@ -33,37 +33,37 @@ function plotQuarter(t, x)
     
     % Generate the plots
     figure
-    subplot(1, 6, 1);
+    subplot(2, 3, 1);
     plot(t, x(:, 1));
     xlabel('time (seconds)');
     ylabel('offset (meters)');
     title('x_s (offset of body)');
 
-    subplot(1, 6, 2);
+    subplot(2, 3, 2);
     plot(t, x(:, 2));
     xlabel('time (seconds)');
     ylabel('offset (meters)');
     title('x_u (offset of tire)');
 
-    subplot(1, 6, 3);
+    subplot(2, 3, 3);
     plot(t, x(:, 3));
     xlabel('time (seconds)');
     ylabel('velocity (meters/second)');
     title('v_s (velocity of body)');
 
-    subplot(1, 6, 4);
+    subplot(2, 3, 4);
     plot(t, x(:, 4));
     xlabel('time (seconds)');
     ylabel('velocity (meters/second)');
     title('v_u (velocity of tire)');
 
-    subplot(1, 6, 5);
+    subplot(2, 3, 5);
     plot(t(1:end-1), F1);
     xlabel('time (seconds)');
     ylabel('acceleration (meters/second^2)');
     title('a_s (acceleration of body)');
 
-    subplot(1, 6, 6);
+    subplot(2, 3, 6);
     plot(t(1:end-1), F2);
     xlabel('time (seconds)');
     ylabel('acceleration (meters/second^2)');

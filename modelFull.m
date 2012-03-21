@@ -11,8 +11,13 @@ function xdot = modelFull(t, x, p)
     global g;
 
     % Input disturbance matrix
-    % TODO : Revise to actual model; add Force Function
-    F = [0; 0; 0; 0*p.ktf; 0*p.ktf; 0*p.ktr; 0*p.ktr];
+    F = [-p.mu*p.grav;
+        0;
+        0;
+        disturbance_step(t)*p.ktf;
+        disturbance_step(t)*p.ktf;
+        disturbance_step(t)*p.ktr;
+        disturbance_step(t)*p.ktr];
     
     % Pull out position and velocity, calculate acceleration.
     pos = [x(1); x(2); x(3); x(4); x(5); x(6); x(7)];

@@ -35,37 +35,52 @@ function plotQuarter(t, x)
     figure
     subplot(1, 6, 1);
     plot(t, x(:, 1));
-    xlabel('x_s (offset of body)');
+    xlabel('time (seconds)');
+    ylabel('offset (meters)');
+    title('x_s (offset of body)');
 
     subplot(1, 6, 2);
     plot(t, x(:, 2));
-    xlabel('x_u (offset of tire)');
+    xlabel('time (seconds)');
+    ylabel('offset (meters)');
+    title('x_u (offset of tire)');
 
     subplot(1, 6, 3);
     plot(t, x(:, 3));
-    xlabel('v_s (velocity of body)');
+    xlabel('time (seconds)');
+    ylabel('velocity (meters/second)');
+    title('v_s (velocity of body)');
 
     subplot(1, 6, 4);
     plot(t, x(:, 4));
-    xlabel('v_u (velocity of tire)');
+    xlabel('time (seconds)');
+    ylabel('velocity (meters/second)');
+    title('v_u (velocity of tire)');
 
     subplot(1, 6, 5);
     plot(t(1:end-1), F1);
-    xlabel('a_s (acceleration of body)');
+    xlabel('time (seconds)');
+    ylabel('acceleration (meters/second^2)');
+    title('a_s (acceleration of body)');
 
     subplot(1, 6, 6);
     plot(t(1:end-1), F2);
-    xlabel('a_u (acceleration of tire)');
+    xlabel('time (seconds)');
+    ylabel('acceleration (meters/second^2)');
+    title('a_u (acceleration of tire)');
     
     figure
     hold on
     subplot(1, 2, 1);
     plot(t,y,t,disturbance,'r');
     xlabel('time (seconds)');
-    ylabel('input disturbance (from inverse dynamics) (meters)');
+    ylabel('offset (meters)');
+    title('input disturbance (from inverse dynamics)');
+    legend('Calculated Disturbance', 'Actual Disturbance');
     
     subplot(1, 2, 2);
     plot(t,error);
     xlabel('time');
-    ylabel('estimation error (meters)');
+    ylabel('offset (meters)');
+    title('estimation error (meters)');
 end

@@ -4,7 +4,8 @@
 % Full Car Masses
 f_car.mu = 840;
 f_car.mf = 53;
-f_car.mr = 76;
+f_car.mr = 53;
+%f_car.mr = 76;
 f_car.Ix = 820;
 f_car.Iy = 1100;
 
@@ -19,7 +20,8 @@ f_car.w = f_car.b1 + f_car.b2;
 
 % Springs
 f_car.kf = 10000;
-f_car.kr = 13000;
+f_car.kr = 10000;
+%f_car.kr = 13000;
 f_car.ktf = 200000;
 f_car.ktr = 200000;
 f_car.kR = 0;

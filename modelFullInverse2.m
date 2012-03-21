@@ -10,7 +10,6 @@
 % Returns:
 %     The disturbance input to the car
 function y = modelFullInverse2(t, x, x_p, y_p, p)
-
     global g;
 
     % Pull out position and velocity
@@ -18,7 +17,7 @@ function y = modelFullInverse2(t, x, x_p, y_p, p)
     vel = [x(8); x(9); x(10); x(11); x(12); x(13); x(14)];
 
     % Input disturbance matrix for previous state
-    F = [-p.mu*p.grav;
+    F = [-p.mu*g;
         0;
         0;
         y_p(1)*p.ktf;

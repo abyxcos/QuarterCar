@@ -10,9 +10,11 @@ f_car.Iy = 1100;
 
 % Lengths
 f_car.a1 = 1.4;
-f_car.a2 = 1.47;
+f_car.a2 = 1.4;
+%f_car.a2 = 1.47;
 f_car.b1 = 0.7;
-f_car.b2 = 0.75;
+f_car.b2 = 0.7;
+%f_car.b2 = 0.75;
 f_car.w = f_car.b1 + f_car.b2;
 
 % Springs
@@ -23,8 +25,8 @@ f_car.ktr = 200000;
 f_car.kR = 0;
 
 % Dampers
-f_car.cf = 2000;
-f_car.cr = 2000;
+f_car.cf = 9600;
+f_car.cr = 9600;
 
 % Mass matrix
 f_car.m = [f_car.mu 0 0 0 0 0 0;

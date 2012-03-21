@@ -22,7 +22,7 @@ function xdot = modelFull(t, x, p)
     % Pull out position and velocity, calculate acceleration.
     pos = [x(1); x(2); x(3); x(4); x(5); x(6); x(7)];
     vel = [x(8); x(9); x(10); x(11); x(12); x(13); x(14)];
-    accel = f_car.m \ (F - f_car.b*vel - f_car.k*pos);
+    accel = p.m \ (F - p.b*vel - p.k*pos);
     
     % Package the data in the output
     xdot = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];

@@ -40,65 +40,77 @@ function plotHalf(t, x)
     figure
     subplot(2,4,1);
     plot(t,x(:,1));
-    ylabel('x_s (offset of body)');
+    title('x_s (offset of body)');
+    ylabel('Meters');
     xlabel('Time (seconds)');
 
     subplot(2,4,2);
     plot(t,x(:,2));
-    ylabel('\theta (tilt of roll)');
+    title('\theta (tilt of roll)');
+    ylabel('Radians');
     xlabel('Time (seconds)');
 
     subplot(2,4,3);
     plot(t,x(:,3));
-    ylabel('x_1 (offset of left tire)');
+    title('x_1 (offset of left tire)');
+    ylabel('Meters');
     xlabel('Time (seconds)');
 
     subplot(2,4,4);
     plot(t,x(:,4));
-    ylabel('x_2 (offset of right tire)');
+    title('x_2 (offset of right tire)');
+    ylabel('Meters');
     xlabel('Time (seconds)');
     
     subplot(2,4,5);
     plot(t,x(:,5));
-    ylabel('x_s (velocity of body)');
+    title('x_s (velocity of body)');
+    ylabel('Meters/Second');
     xlabel('Time (seconds)');
 
     subplot(2,4,6);
     plot(t,x(:,6));
-    ylabel('\omega (velocity of roll)');
+    title('\omega (velocity of roll)');
+    ylabel('Radians/Second');
     xlabel('Time (seconds)');
 
     subplot(2,4,7);
     plot(t,x(:,7));
-    ylabel('v_1 (velocity of left tire)');
+    title('v_1 (velocity of left tire)');
+    ylabel('Meters/Second');
     xlabel('Time (seconds)');
 
     subplot(2,4,8);
     plot(t,x(:,8));
-    ylabel('v_2 (velocity of right tire)');
+    title('v_2 (velocity of right tire)');
+    ylabel('Meters/Second');
     xlabel('Time (seconds)');
     
     figure
     hold on
     subplot(1,4,1);
     plot(t,y(1, :), t,disturbance,'r');
+    title('Input Disturbance (y_1)');
     legend('Calculated Disturbance', 'Actual Disturbance');
     xlabel('Time (seconds)');
-    ylabel('Height (meters)');
+    ylabel('Meters');
     
     subplot(1,4,2);
     plot(t,y(2, :), t,disturbance,'r');
+    title('Input Disturbance (y_2)');
     legend('Calculated Disturbance', 'Actual Disturbance');
     xlabel('Time (seconds)');
-    ylabel('Height (meters)');
+    ylabel('Meters');
     
     subplot(1,4,3);
     plot(t,error(1, :));
-    ylabel('Estimation error (meters)');
+    title('Estimation Error for y_2');
+    ylabel('Meters');
     xlabel('Time (seconds)');
 
     subplot(1,4,4);
     plot(t,error(2, :));
-    ylabel('Estimation error (meters)');
+    title('Estimation Error for y_2');
+    ylabel('Meters');
     xlabel('Time (seconds)');
 end

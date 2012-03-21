@@ -7,7 +7,7 @@ function plotQuarter(t, x)
     init_globals_quarter;
     
     % Run the quarter car model
-    [t, x] = ode45(@(t, x) modelQuarter(t, x, q_car), [0 10], [0; 0; 0; 0]);
+    [t, x] = ode45(@(t, x) modelQuarter(t, x, q_car), [0 5], [0; 0; 0; 0]);
 
     % Determine the accelerations based off the returned velocities
     F1 = diff(x(:, 3))./diff(t);
@@ -61,10 +61,11 @@ function plotQuarter(t, x)
     hold on
     subplot(1, 2, 1);
     plot(t,y,t,disturbance,'r');
-    xlabel('input disturbance (from inverse dynamics)');
-    ylabel('height (meters)');
+    xlabel('time (seconds)');
+    ylabel('input disturbance (from inverse dynamics) (meters)');
     
     subplot(1, 2, 2);
     plot(t,error);
+    xlabel('time');
     ylabel('estimation error (meters)');
 end

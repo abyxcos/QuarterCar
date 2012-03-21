@@ -88,6 +88,31 @@ function plotHalf(t, x)
     xlabel('Time (seconds)');
     
     figure
+    subplot(2, 2, 1);
+    plot(t(1:end-1), F1);
+    xlabel('time (seconds)');
+    ylabel('acceleration (meters/second^2)');
+    title('a_s (acceleration of body)');
+    
+    subplot(2, 2, 2);
+    plot(t(1:end-1), F2);
+    xlabel('time (seconds)');
+    ylabel('acceleration (radians/second^2)');
+    title('\alpha (acceleration of roll)');
+    
+    subplot(2, 2, 3);
+    plot(t(1:end-1), F3);
+    xlabel('time (seconds)');
+    ylabel('acceleration (meters/second^2)');
+    title('a_1 (acceleration of left tire)');
+    
+    subplot(2, 2, 4);
+    plot(t(1:end-1), F4);
+    xlabel('time (seconds)');
+    ylabel('acceleration (meters/second^2)');
+    title('a_2 (acceleration of right tire)');
+    
+    figure
     hold on
     subplot(2,2,1);
     plot(t,y(1, :), t,disturbance,'r');

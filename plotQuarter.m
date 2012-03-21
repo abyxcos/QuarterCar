@@ -33,41 +33,26 @@ function plotQuarter(t, x)
     
     % Generate the plots
     figure
-    subplot(2, 3, 1);
-    plot(t, x(:, 1));
+    subplot(1, 3, 1);
+    plot(t, x(:, 1), t, x(:, 2), 'r');
     xlabel('time (seconds)');
     ylabel('offset (meters)');
-    title('x_s (offset of body)');
+    %title('x_s (offset of body)');
+    legend('x_s (body offset)', 'x_u (tire offset)', 'Location', 'NorthOutside');
 
-    subplot(2, 3, 2);
-    plot(t, x(:, 2));
-    xlabel('time (seconds)');
-    ylabel('offset (meters)');
-    title('x_u (offset of tire)');
-
-    subplot(2, 3, 3);
-    plot(t, x(:, 3));
+    subplot(1, 3, 2);
+    plot(t, x(:, 3), t, x(:, 4), 'r');
     xlabel('time (seconds)');
     ylabel('velocity (meters/second)');
-    title('v_s (velocity of body)');
+    %title('v_s (velocity of body)');
+    legend('v_s (body velocity)', 'v_u (tire velocity)', 'Location', 'NorthOutside');
 
-    subplot(2, 3, 4);
-    plot(t, x(:, 4));
-    xlabel('time (seconds)');
-    ylabel('velocity (meters/second)');
-    title('v_u (velocity of tire)');
-
-    subplot(2, 3, 5);
-    plot(t(1:end-1), F1);
+    subplot(1, 3, 3);
+    plot(t(1:end-1), F1, t(1:end-1), F2, 'r');
     xlabel('time (seconds)');
     ylabel('acceleration (meters/second^2)');
-    title('a_s (acceleration of body)');
-
-    subplot(2, 3, 6);
-    plot(t(1:end-1), F2);
-    xlabel('time (seconds)');
-    ylabel('acceleration (meters/second^2)');
-    title('a_u (acceleration of tire)');
+    %title('a_s (acceleration of body)');
+    legend('a_s (body acceleration)', 'a_u (tire acceleration)', 'Location', 'NorthOutside');
     
     figure
     hold on
@@ -80,7 +65,7 @@ function plotQuarter(t, x)
     
     subplot(1, 2, 2);
     plot(t,error);
-    xlabel('time');
+    xlabel('time (seconds)');
     ylabel('offset (meters)');
-    title('estimation error (meters)');
+    title('estimation error');
 end

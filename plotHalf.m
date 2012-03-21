@@ -19,64 +19,86 @@ function plotHalf(t, x)
     % Run the inverse half car model
     y=zeros([2, length(t)-1]);
     disturbance=zeros([1,length(t)-1]);
-    for i=1:length(t)-1
-        temp=modelHalfInverse(t(i), x(i,:), [F1(i) F2(i) F3(i) F4(i)], h_car);
+    y_p = [0; 0];
+    for i=2:length(t)
+        %temp=modelHalfInverse(t(i), x(i,:), [F1(i) F2(i) F3(i) F4(i)], h_car);
+        temp=modelHalfInverse2(t(i), x(i,:), x(i-1,:), y_p, h_car);
         y(1, i) = temp(1);
         y(2, i) = temp(2);
+        y_p = temp;
         disturbance(i)=disturbance_step(t(i));
     end
     
     % Calculate the error between the input and the inverse
-    error=zeros([1, length(t)-1]);
-    for i=1:length(t)-1
-        error(i)=y(i)-disturbance_step(t(i));
+    error=zeros([2, length(t)-1]);
+    for i=1:length(t)
+        error(1, i)=y(1, i)-disturbance_step(t(i));
+        error(2, i)=y(2, i)-disturbance_step(t(i));
     end
     
     % Generate the plots
     figure
     subplot(2,4,1);
     plot(t,x(:,1));
-    xlabel('x_s (offset of body)');
+    ylabel('x_s (offset of body)');
+    xlabel('Time (seconds)');
 
     subplot(2,4,2);
     plot(t,x(:,2));
-    xlabel('\theta (tilt of roll)');
+    ylabel('\theta (tilt of roll)');
+    xlabel('Time (seconds)');
 
     subplot(2,4,3);
     plot(t,x(:,3));
-    xlabel('x_1 (offset of left tire)');
+    ylabel('x_1 (offset of left tire)');
+    xlabel('Time (seconds)');
 
     subplot(2,4,4);
     plot(t,x(:,4));
-    xlabel('x_2 (offset of right tire)');
+    ylabel('x_2 (offset of right tire)');
+    xlabel('Time (seconds)');
     
     subplot(2,4,5);
     plot(t,x(:,5));
-    xlabel('x_s (velocity of body)');
+    ylabel('x_s (velocity of body)');
+    xlabel('Time (seconds)');
 
     subplot(2,4,6);
     plot(t,x(:,6));
-    xlabel('\omega (velocity of roll)');
+    ylabel('\omega (velocity of roll)');
+    xlabel('Time (seconds)');
 
     subplot(2,4,7);
     plot(t,x(:,7));
-    xlabel('v_1 (velocity of left tire)');
+    ylabel('v_1 (velocity of left tire)');
+    xlabel('Time (seconds)');
 
     subplot(2,4,8);
     plot(t,x(:,8));
-    xlabel('v_2 (velocity of right tire)');
+    ylabel('v_2 (velocity of right tire)');
+    xlabel('Time (seconds)');
     
     figure
     hold on
-    subplot(1,3,1);
-    plot(t(1:end-1),y(1, :), t(1:end-1),disturbance,'r');
-    xlabel('input disturbance (from inverse dynamics)');
-    ylabel('height (meters)');
+    subplot(1,4,1);
+    plot(t,y(1, :), t,disturbance,'r');
+    legend('Calculated Disturbance', 'Actual Disturbance');
+    xlabel('Time (seconds)');
+    ylabel('Height (meters)');
     
-    subplot(1,3,2);
-    plot(t(1:end-1),y(2, :), t(1:end-1),disturbance,'r');
+    subplot(1,4,2);
+    plot(t,y(2, :), t,disturbance,'r');
+    legend('Calculated Disturbance', 'Actual Disturbance');
+    xlabel('Time (seconds)');
+    ylabel('Height (meters)');
     
-    subplot(1,3,3);
-    plot(t(1:end-1),error);
-    ylabel('estimation error (meters)');
+    subplot(1,4,3);
+    plot(t,error(1, :));
+    ylabel('Estimation error (meters)');
+    xlabel('Time (seconds)');
+
+    subplot(1,4,4);
+    plot(t,error(2, :));
+    ylabel('Estimation error (meters)');
+    xlabel('Time (seconds)');
 end

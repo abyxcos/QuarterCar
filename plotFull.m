@@ -1,40 +1,43 @@
 % Generate the appropriate plots for the quarter car model
-function plotHalf(t, x)
+function plotFull(t, x)
     close all;
     
     % Set up enviornment for the quarter car model
     init_globals;
-    init_globals_half;
+    init_globals_full;
     
     % Run the quarter car model
-    [t,x]=ode45(@(t,x) modelHalf(t, x, h_car), [0 5], [0; 0; 0; 0; 0; 0; 0; 0]);
+    [t,x]=ode45(@(t,x) modelFull(t, x, f_car), [0 5], [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0]);
     
     % Determine the accelerations based off the returned velocities
-    F1 = diff(x(:, 5))./diff(t);
-    F2 = diff(x(:, 6))./diff(t);
-    F3 = diff(x(:, 7))./diff(t);
-    F4 = diff(x(:, 8))./diff(t);
+    F1 = diff(x(:, 8))./diff(t);
+    F2 = diff(x(:, 9))./diff(t);
+    F3 = diff(x(:, 10))./diff(t);
+    F4 = diff(x(:, 11))./diff(t);
+    F5 = diff(x(:, 12))./diff(t);
+    F6 = diff(x(:, 13))./diff(t);
+    F7 = diff(x(:, 14))./diff(t);
     tt = 0:(t(end) / (length(F1) - 1)):t(end);
 
-    % Run the inverse half car model
-    y=zeros([2, length(t)-1]);
-    disturbance=zeros([1,length(t)-1]);
-    y_p = [0; 0];
-    for i=2:length(t)
-        %temp=modelHalfInverse(t(i), x(i,:), [F1(i) F2(i) F3(i) F4(i)], h_car);
-        temp=modelHalfInverse2(t(i), x(i,:), x(i-1,:), y_p, h_car);
-        y(1, i) = temp(1);
-        y(2, i) = temp(2);
-        y_p = temp;
-        disturbance(i)=disturbance_step(t(i));
-    end
-    
-    % Calculate the error between the input and the inverse
-    error=zeros([2, length(t)-1]);
-    for i=1:length(t)
-        error(1, i)=y(1, i)-disturbance_step(t(i));
-        error(2, i)=y(2, i)-disturbance_step(t(i));
-    end
+%     % Run the inverse half car model
+%     y=zeros([2, length(t)-1]);
+%     disturbance=zeros([1,length(t)-1]);
+%     y_p = [0; 0];
+%     for i=2:length(t)
+%         %temp=modelHalfInverse(t(i), x(i,:), [F1(i) F2(i) F3(i) F4(i)], h_car);
+%         temp=modelFullInverse2(t(i), x(i,:), x(i-1,:), y_p, h_car);
+%         y(1, i) = temp(1);
+%         y(2, i) = temp(2);
+%         y_p = temp;
+%         disturbance(i)=disturbance_step(t(i));
+%     end
+%     
+%     % Calculate the error between the input and the inverse
+%     error=zeros([2, length(t)-1]);
+%     for i=1:length(t)
+%         error(1, i)=y(1, i)-disturbance_step(t(i));
+%         error(2, i)=y(2, i)-disturbance_step(t(i));
+%     end
     
     % Generate the plots
     figure

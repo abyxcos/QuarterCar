@@ -11,7 +11,7 @@ function xdot = modelFull(t, x, p)
     global g;
 
     % Input disturbance matrix
-    F = [-p.mu*p.grav;
+    F = [-p.mu*g;
         0;
         0;
         disturbance_step(t)*p.ktf;

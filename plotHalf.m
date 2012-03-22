@@ -117,14 +117,14 @@ function plotHalf(t, x)
     subplot(2,2,1);
     plot(t,y(1, :), t,disturbance,'r');
     title('Input Disturbance (y_1)');
-    legend('Calculated Disturbance', 'Actual Disturbance');
+    legend('Calculated Disturbance', 'Actual Disturbance', 'Location', 'NorthOutside');
     xlabel('Time (seconds)');
     ylabel('Meters');
     
     subplot(2,2,2);
     plot(t,y(2, :), t,disturbance,'r');
     title('Input Disturbance (y_2)');
-    legend('Calculated Disturbance', 'Actual Disturbance');
+    legend('Calculated Disturbance', 'Actual Disturbance', 'Location', 'NorthOutside');
     xlabel('Time (seconds)');
     ylabel('Meters');
     

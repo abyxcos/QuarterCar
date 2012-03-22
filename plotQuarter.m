@@ -61,7 +61,7 @@ function plotQuarter(t, x)
     xlabel('time (seconds)');
     ylabel('offset (meters)');
     title('input disturbance (from inverse dynamics)');
-    legend('Calculated Disturbance', 'Actual Disturbance');
+    legend('Calculated Disturbance', 'Actual Disturbance', 'Location', 'NorthOutside');
     
     subplot(1, 2, 2);
     plot(t,error);

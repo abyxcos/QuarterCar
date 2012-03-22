@@ -45,185 +45,125 @@ function plotFull(t, x)
     % Generate the plots
     figure
     % Position row
-    subplot(3,7,1);
+    subplot(3,5,1);
     plot(t,x(:,1));
     title('x_s (offset of body)');
     ylabel('Meters');
     xlabel('Time (seconds)');
 
-    subplot(3,7,2);
+    subplot(3,5,2);
     plot(t,x(:,2));
     title('\theta (tilt of roll)');
     ylabel('Radians');
     xlabel('Time (seconds)');
 
-    subplot(3,7,3);
+    subplot(3,5,3);
     plot(t,x(:,2));
     title('\theta (tilt of pitch)');
     ylabel('Radians');
     xlabel('Time (seconds)');
     
-    subplot(3,7,4);
-    plot(t,x(:,4));
-    title('x_1 (offset of left front tire)');
+    subplot(3,5,4);
+    plot(t,x(:,4), t,x(:,5),'r');
+    title('x_1 and x_2 (offset of front tires)');
     ylabel('Meters');
     xlabel('Time (seconds)');
 
-    subplot(3,7,5);
-    plot(t,x(:,5));
-    title('x_2 (offset of right front tire)');
-    ylabel('Meters');
-    xlabel('Time (seconds)');
-    
-    subplot(3,7,6);
-    plot(t,x(:,6));
-    title('x_3 (offset of left back tire)');
+    subplot(3,5,5);
+    plot(t,x(:,6), t,x(:,7),'r');
+    title('x_3 and x_4 (offset of back tires)');
     ylabel('Meters');
     xlabel('Time (seconds)');
 
-    subplot(3,7,7);
-    plot(t,x(:,7));
-    title('x_4 (offset of right back tire)');
-    ylabel('Meters');
-    xlabel('Time (seconds)');
-    
     % Velocity row
-    subplot(3,7,8);
+    subplot(3,5,6);
     plot(t,x(:,8));
     title('v_s (velocity of body)');
     ylabel('Meters/second');
     xlabel('Time (seconds)');
 
-    subplot(3,7,9);
+    subplot(3,5,7);
     plot(t,x(:,9));
     title('\omega (velocity of roll)');
     ylabel('Radians/second');
     xlabel('Time (seconds)');
 
-    subplot(3,7,10);
+    subplot(3,5,8);
     plot(t,x(:,10));
     title('\theta (velocity of pitch)');
     ylabel('Radians/second');
     xlabel('Time (seconds)');
     
-    subplot(3,7,11);
-    plot(t,x(:,11));
-    title('v_1 (velocity of left front tire)');
+    subplot(3,5,9);
+    plot(t,x(:,11), t,x(:,12),'r');
+    title('v_1 and v_2 (velocity of front tires)');
     ylabel('Meters/second');
     xlabel('Time (seconds)');
 
-    subplot(3,7,12);
-    plot(t,x(:,12));
-    title('v_2 (velocity of right front tire)');
-    ylabel('Meters/second');
-    xlabel('Time (seconds)');
-    
-    subplot(3,7,13);
-    plot(t,x(:,13));
-    title('v_3 (velocity of left back tire)');
-    ylabel('Meters/second');
-    xlabel('Time (seconds)');
-
-    subplot(3,7,14);
-    plot(t,x(:,14));
-    title('v_4 (velocity of right back tire)');
+    subplot(3,5,10);
+    plot(t,x(:,13), t,x(:,14),'r');
+    title('v_3 and v_4 (velocity of back tires)');
     ylabel('Meters/second');
     xlabel('Time (seconds)');
     
     % Acceleration row
-    subplot(3,7,15);
+    subplot(3,5,11);
     plot(t(1:end-1),F1);
     title('a_s (acceleration of body)');
     ylabel('Meters/second^2');
     xlabel('Time (seconds)');
 
-    subplot(3,7,16);
+    subplot(3,5,12);
     plot(t(1:end-1),F2);
     title('\alpha (acceleration of roll)');
     ylabel('Radians/second^2');
     xlabel('Time (seconds)');
 
-    subplot(3,7,17);
+    subplot(3,5,13);
     plot(t(1:end-1),F3);
     title('\alpha (acceleration of pitch)');
     ylabel('Radians/second^2');
     xlabel('Time (seconds)');
     
-    subplot(3,7,18);
-    plot(t(1:end-1),F4);
-    title('a_1 (acceleration of left front tire)');
-    ylabel('Meters/second^2');
-    xlabel('Time (seconds)');
-
-    subplot(3,7,19);
-    plot(t(1:end-1),F5);
-    title('a_2 (acceleration of right front tire)');
+    subplot(3,5,14);
+    plot(t(1:end-1),F4, t(1:end-1),F5,'r');
+    title('a_1 and a_2 (acceleration of front tires)');
     ylabel('Meters/second^2');
     xlabel('Time (seconds)');
     
-    subplot(3,7,20);
-    plot(t(1:end-1),F6);
-    title('a_3 (acceleration of left back tire)');
-    ylabel('Meters/second^2');
-    xlabel('Time (seconds)');
-
-    subplot(3,7,21);
-    plot(t(1:end-1),F7);
-    title('a_4 (acceleration of right back tire)');
+    subplot(3,5,15);
+    plot(t(1:end-1),F6, t(1:end-1),F7,'r');
+    title('a_3 and a_4 (acceleration of back tires)');
     ylabel('Meters/second^2');
     xlabel('Time (seconds)');
 
     figure
     hold on
-    subplot(2,4,1);
-    plot(t,y(1, :), t,disturbance,'r');
-    title('Input Disturbance (y_1)');
-    legend('Calculated Disturbance', 'Actual Disturbance');
+    subplot(2,2,1);
+    plot(t,y(1, :),'b', t,disturbance,'r', t,y(2, :),'b', t,disturbance,'r');
+    title('Input Disturbance (y_1 and y_2)');
+    legend('Calculated Disturbance (left)', 'Actual Disturbance (left)', 'Calculated Disturbance (right)', 'Actual Disturbance (right)', 'Location', 'NorthOutside');
+    xlabel('Time (seconds)');
+    ylabel('Meters');
+        
+    subplot(2,2,2);
+    plot(t,y(3, :),'b', t,disturbance,'r', t,y(4, :),'b', t,disturbance,'r');
+    title('Input Disturbance (y_3 and y_4)');
+    legend('Calculated Disturbance (left)', 'Actual Disturbance (left)', 'Calculated Disturbance (right)', 'Actual Disturbance (right)', 'Location', 'NorthOutside');
     xlabel('Time (seconds)');
     ylabel('Meters');
     
-    subplot(2,4,2);
-    plot(t,y(2, :), t,disturbance,'r');
-    title('Input Disturbance (y_2)');
-    legend('Calculated Disturbance', 'Actual Disturbance');
-    xlabel('Time (seconds)');
+    subplot(2,2,3);
+    plot(t,error(1, :),t,error(2, :),'r');
+    title('Estimation Error for front wheels');
     ylabel('Meters');
+    xlabel('Time (seconds)');
+    legend('y_1', 'y_2', 'Location', 'NorthOutside');
     
-    subplot(2,4,3);
-    plot(t,y(3, :), t,disturbance,'r');
-    title('Input Disturbance (y_3)');
-    legend('Calculated Disturbance', 'Actual Disturbance');
-    xlabel('Time (seconds)');
-    ylabel('Meters');
-    
-    subplot(2,4,4);
-    plot(t,y(4, :), t,disturbance,'r');
-    title('Input Disturbance (y_4)');
-    legend('Calculated Disturbance', 'Actual Disturbance');
-    xlabel('Time (seconds)');
-    ylabel('Meters');
-    
-    subplot(2,4,5);
-    plot(t,error(1, :));
-    title('Estimation Error for y_2');
+    subplot(2,2,4);
+    plot(t,error(3, :),t,error(4, :),'r');
+    title('Estimation Error for rear wheels');
     ylabel('Meters');
     xlabel('Time (seconds)');
-
-    subplot(2,4,6);
-    plot(t,error(2, :));
-    title('Estimation Error for y_2');
-    ylabel('Meters');
-    xlabel('Time (seconds)');
-    
-    subplot(2,4,7);
-    plot(t,error(3, :));
-    title('Estimation Error for y_2');
-    ylabel('Meters');
-    xlabel('Time (seconds)');
-
-    subplot(2,4,8);
-    plot(t,error(4, :));
-    title('Estimation Error for y_2');
-    ylabel('Meters');
-    xlabel('Time (seconds)');
+    legend('y_3', 'y_4', 'Location', 'NorthOutside');
 end

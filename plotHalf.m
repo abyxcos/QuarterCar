@@ -7,7 +7,7 @@ function plotHalf(t, x)
     init_globals_half;
     
     % Run the quarter car model
-    [t,x]=ode45(@(t,x) modelHalf(t, x, h_car), [0 5], [0; 0; 0; 0; 0; 0; 0; 0]);
+    [t,x]=ode45(@(t,x) modelHalf(t, x, h_car), [0 6], [0; 0; 0; 0; 0; 0; 0; 0]);
     
     % Determine the accelerations based off the returned velocities
     F1 = diff(x(:, 5))./diff(t);
@@ -117,14 +117,14 @@ function plotHalf(t, x)
     subplot(2,2,1);
     plot(t,y(1, :), t,disturbance,'r');
     title('Input Disturbance (y_1)');
-    legend('Calculated Disturbance', 'Actual Disturbance', 'Location', 'NorthOutside');
+    legend('Estimated Disturbance', 'Actual Disturbance', 'Location', 'NorthOutside');
     xlabel('Time (seconds)');
     ylabel('Meters');
     
     subplot(2,2,2);
     plot(t,y(2, :), t,disturbance,'r');
     title('Input Disturbance (y_2)');
-    legend('Calculated Disturbance', 'Actual Disturbance', 'Location', 'NorthOutside');
+    legend('Estimated Disturbance', 'Actual Disturbance', 'Location', 'NorthOutside');
     xlabel('Time (seconds)');
     ylabel('Meters');
     
@@ -133,10 +133,12 @@ function plotHalf(t, x)
     title('Estimation Error for y_2');
     ylabel('Meters');
     xlabel('Time (seconds)');
+    axis([0 6 -0.03 0.01])
 
     subplot(2,2,4);
     plot(t,error(2, :));
     title('Estimation Error for y_2');
     ylabel('Meters');
     xlabel('Time (seconds)');
+    axis([0 6 -0.03 0.01])
 end

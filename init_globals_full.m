@@ -13,6 +13,7 @@ f_car.Iy = 1100;
 f_car.a1 = 1.4;
 f_car.a2 = 1.4;
 %f_car.a2 = 1.47;
+f_car.back_lag = 0.1385;
 f_car.b1 = 0.7;
 f_car.b2 = 0.7;
 %f_car.b2 = 0.75;

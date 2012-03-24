@@ -21,7 +21,8 @@ function plotFull(t, x)
 
     % Run the inverse half car model
     y=zeros([4, length(t)-1]);
-    disturbance=zeros([1,length(t)-1]);
+    disturbance_front=zeros([1,length(t)-1]);
+    disturbance_back=zeros([1,length(t)-1]);
     y_p = [0; 0; 0; 0];
     for i=2:length(t)
         temp=modelFullInverse2(t(i), x(i,:), x(i-1,:), y_p, f_car);
@@ -30,7 +31,8 @@ function plotFull(t, x)
         y(3, i) = temp(3);
         y(4, i) = temp(4);
         y_p = temp;
-        disturbance(i)=disturbance_step(t(i));
+        disturbance_front(i)=disturbance_step(t(i));
+        disturbance_back(i)=disturbance_step(t(i)-f_car.back_lag);
     end
     
     % Calculate the error between the input and the inverse
@@ -38,8 +40,8 @@ function plotFull(t, x)
     for i=1:length(t)
         error(1, i)=y(1, i)-disturbance_step(t(i));
         error(2, i)=y(2, i)-disturbance_step(t(i));
-        error(3, i)=y(3, i)-disturbance_step(t(i));
-        error(4, i)=y(4, i)-disturbance_step(t(i));
+        error(3, i)=y(3, i)-disturbance_step(t(i)-f_car.back_lag);
+        error(4, i)=y(4, i)-disturbance_step(t(i)-f_car.back_lag);
     end
     
     % Generate the plots
@@ -140,14 +142,14 @@ function plotFull(t, x)
     figure
     hold on
     subplot(2,2,1);
-    plot(t,y(1, :),'b', t,disturbance,'r', t,y(2, :),'b', t,disturbance,'r');
+    plot(t,y(1, :),'b', t,disturbance_front,'r', t,y(2, :),'b', t,disturbance_front,'r');
     title('Input Disturbance (y_1 and y_2)');
     legend('Calculated Disturbance (left)', 'Actual Disturbance (left)', 'Calculated Disturbance (right)', 'Actual Disturbance (right)', 'Location', 'NorthOutside');
     xlabel('Time (seconds)');
     ylabel('Meters');
         
     subplot(2,2,2);
-    plot(t,y(3, :),'b', t,disturbance,'r', t,y(4, :),'b', t,disturbance,'r');
+    plot(t,y(3, :),'b', t,disturbance_back,'r', t,y(4, :),'b', t,disturbance_back,'r');
     title('Input Disturbance (y_3 and y_4)');
     legend('Calculated Disturbance (left)', 'Actual Disturbance (left)', 'Calculated Disturbance (right)', 'Actual Disturbance (right)', 'Location', 'NorthOutside');
     xlabel('Time (seconds)');

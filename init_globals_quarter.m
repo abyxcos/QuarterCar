@@ -15,8 +15,8 @@ q_car.bs = 2400;    % Shocks
 q_car.bu = 0;       % Tire
 
 % Mechanical stops
-q_car.spring_heigh = 0.3;   % Compressed spring size (meters)
-q_car.tire_height = 0;      % Compressed tire size (meters)
+q_car.spring_height = -0.3; % Compressed spring size (meters)
+q_car.tire_height = -0.01;      % Compressed tire size (meters)
 
 % Mass Matrix
 q_car.m = [q_car.ms 0;

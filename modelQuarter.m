@@ -17,8 +17,18 @@ function xdot = modelQuarter(t, x, p)
     % Pull out position and velocity, calculate acceleration.
     pos = [x(1); x(2)];
     vel = [x(3); x(4)];
+    if ((pos(2) - disturbance_step(t)) < p.tire_height)
+        pos(2) = disturbance_step(t) + p.tire_height;
+        vel(2) = 0;
+        %accel(2) = 0;
+    end
+    if ((pos(1) - disturbance_step(t)) < p.spring_height)
+        pos(1) = disturbance_step(t) + p.spring_height;
+        %vel(1) = 0;
+        %accel(1) = 0;
+    end
     accel = p.m \ (F - p.b*vel - p.k*pos); % '\'==fast inverse
-
+    
     % Package the data in the output
     xdot = [0; 0; 0; 0];
     xdot(1) = vel(1);

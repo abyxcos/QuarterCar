@@ -8,6 +8,7 @@
 % Returns:
 %     The disturbance input to the car
 function y = modelQuarterInverse(t, x, a, p)
+
     % Pull out position, velocity, and acceleration.
     pos = [x(1); x(2)];
     vel = [x(3); x(4)];

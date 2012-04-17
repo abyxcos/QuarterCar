@@ -1,6 +1,7 @@
 % Quarter Car Model Inverse 2
 
-% modelQuarterInverse2 - Determines the disturbance input based off the state
+% modelQuarterInverse2 - Determines the disturbance input based off the
+%     state
 % Parameters:
 %     t - The current time
 %     x - The current position and velocity

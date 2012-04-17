@@ -8,6 +8,7 @@
 % Returns:
 %     The xdot for the model in its current state
 function xdot = modelQuarter(t, x, p)
+
     global g;
     
     % Input disturbance matrix

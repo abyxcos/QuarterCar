@@ -219,7 +219,13 @@ function plotFull
     % Set the camera angle
     view(45, 30);
     axis([-2 2 -2 2 -.3 .1]);
+    
+    % Make a video file (30 frames per second over 5 seconds)
+    video = VideoWriter('car.avi');
+    video.FrameRate = 30;
+    open(video);
 
+    frame_time = 0;
     for i = 1 : length(t)
         % Calculate the body position
         body_y_r = 0 - f_car.b2*cos(x(i, 2));
@@ -265,10 +271,13 @@ function plotFull
             (t_ref_z/64) - 0.25 + x(i, 4));
         set(t_fl, 'Faces', t_face, 'Vertices', t_vert);
         
-        % Wait for the next time slice
-        if (i ~= length(t))
-            pause((t(i+1) - t(i)) / 4);
+        % Check if this frame should be captured and update the next
+        % capture time
+        if (t(i) >= frame_time)
+            writeVideo(video, getframe);
+            frame_time = frame_time + 1/30;
         end
     end
 
+    close(video);
 end

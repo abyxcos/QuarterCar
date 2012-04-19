@@ -8,8 +8,8 @@ function plotFull
     init_globals_full;
     
     % Run the quarter car model
-    [t, x] = ode45(@(t, x) modelFull(t, x, f_car), [0 5], ...
-        [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0]);
+    [t, x] = ode45(@(t, x) modelFull(t, x, f_car), [0 10], ...
+        [-0.2163; 0; 0; -0.0103; -0.0103; -0.0103; -0.0103; 0; 0; 0; 0; 0; 0; 0]);
     
     % Determine the accelerations based off the returned velocities
     accel_b = diff(x(:, 8))./diff(t);
@@ -236,14 +236,14 @@ function plotFull
         body_z_bl = x(i, 1) + f_car.b2*sin(x(i, 2)) - f_car.a2*sin(x(i, 3));
         body_z_fr = x(i, 1) - f_car.b2*sin(x(i, 2)) + f_car.a1*sin(x(i, 3));
         body_z_fl = x(i, 1) + f_car.b2*sin(x(i, 2)) + f_car.a1*sin(x(i, 3));
-        body_vert = [body_x_b body_y_r body_z_fr; % Bottom, front, right
-            body_x_b body_y_l body_z_fl; % Bottom, front, left
-            body_x_f body_y_l body_z_bl; % Bottom, back, left
-            body_x_f body_y_r body_z_br; % Bottom, back, right
-            body_x_b body_y_r (body_z_fr + .05); % Top, front, right
-            body_x_b body_y_l (body_z_fl + .05); % Top, front, left
-            body_x_f body_y_l (body_z_bl + .05); % Top, back, left
-            body_x_f body_y_r (body_z_br + .05)]; % Top, back, right
+        body_vert = [body_x_b body_y_r body_z_fr; % Bottom, back, right
+            body_x_b body_y_l body_z_fl; % Bottom, back, left
+            body_x_f body_y_l body_z_bl; % Bottom, front, left
+            body_x_f body_y_r body_z_br; % Bottom, front, right
+            body_x_b body_y_r (body_z_fr + .05); % Top, back, right
+            body_x_b body_y_l (body_z_fl + .05); % Top, back, left
+            body_x_f body_y_l (body_z_bl + .05); % Top, front, left
+            body_x_f body_y_r (body_z_br + .05)]; % Top, front, right
         set(body, 'Faces', body_face, 'Vertices', body_vert);
         
         % Calculate the tire positions

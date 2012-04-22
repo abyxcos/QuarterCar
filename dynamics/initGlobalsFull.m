@@ -19,6 +19,10 @@ f_car.b2 = 0.7;
 %f_car.b2 = 0.75;
 f_car.w = f_car.b1 + f_car.b2;
 
+% Heights at rest
+f_car.h_body = -0.2163;
+f_car.h_wheel = -0.0103;
+
 % Springs
 f_car.kf = 10000;
 f_car.kr = 10000;

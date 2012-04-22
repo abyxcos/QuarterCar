@@ -4,8 +4,8 @@ function plotFull
     close all;
     
     % Set up enviornment for the quarter car model
-    init_globals;
-    init_globals_full;
+    initGlobals;
+    initGlobalsFull;
     
     % Run the quarter car model
     [t, x] = ode45(@(t, x) modelFull(t, x, f_car), [0 10], ...
@@ -28,7 +28,7 @@ function plotFull
     disturbance_back = zeros([1, length(t)-1]);
     y_p = [0; 0; 0; 0];
     for i = 2 : length(t)
-        temp = modelFullInverse2(t(i), x(i, :), x(i-1, :), y_p, f_car);
+        temp = modelFullInverse(t(i), x(i, :), x(i-1, :), y_p, f_car);
         y(1, i) = temp(1);
         y(2, i) = temp(2);
         y(3, i) = temp(3);
@@ -47,7 +47,10 @@ function plotFull
         error(4, i) = y(4, i) - disturbance_step(t(i) - f_car.back_lag);
     end
     
+    
+    %
     % Generate the plots
+    %
     figure
 
     % Body Offset
@@ -195,7 +198,10 @@ function plotFull
     xlabel('Time (Seconds)');
     legend('y_3', 'y_4', 'Location', 'NorthOutside');
     
+    
+    %
     % Make an animation of the car over time
+    %
     figure;
 
     % Body face references

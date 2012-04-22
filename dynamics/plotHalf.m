@@ -4,8 +4,8 @@ function plotHalf
 close all;
     
     % Set up enviornment for the quarter car model
-    init_globals;
-    init_globals_half;
+    initGlobals;
+    initGlobalsHalf;
     
     % Run the quarter car model
     [t, x] = ode45(@(t, x) modelHalf(t, x, h_car), [0 6], ...

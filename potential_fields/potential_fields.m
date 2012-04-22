@@ -1,5 +1,5 @@
 %Simulation - Navfun_Fixedpos
-%By Michael Audi
+%By Michael Audi, Aaron Fineman
 %For RBE/ECE 595
 %-------------------------------------------------------------------------%
 %Description

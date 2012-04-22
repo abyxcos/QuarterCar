@@ -10,6 +10,7 @@
 % Returns:
 %     The disturbance input to the car
 function y = modelFullInverse2(t, x, x_p, y_p, p)
+
     global g;
 
     % Pull out position and velocity

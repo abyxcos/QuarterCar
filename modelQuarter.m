@@ -8,6 +8,7 @@
 % Returns:
 %     The xdot for the model in its current state
 function xdot = modelQuarter(t, x, p)
+
     global g;
     
     % Input disturbance matrix
@@ -18,7 +19,7 @@ function xdot = modelQuarter(t, x, p)
     pos = [x(1); x(2)];
     vel = [x(3); x(4)];
     accel = p.m \ (F - p.b*vel - p.k*pos); % '\'==fast inverse
-
+    
     % Package the data in the output
     xdot = [0; 0; 0; 0];
     xdot(1) = vel(1);

@@ -42,15 +42,18 @@ f_car.m = [f_car.mu 0 0 0 0 0 0;
 
 % Damper matrix
 C11 = 2*f_car.cf + 2*f_car.cr;
-C12 = f_car.b1*f_car.cf - f_car.b2*f_car.cf - f_car.b1*f_car.cr + f_car.b2*f_car.cr;
+C12 = f_car.b1*f_car.cf - f_car.b2*f_car.cf - f_car.b1*f_car.cr + ...
+    f_car.b2*f_car.cr;
 C13 = 2*f_car.a2*f_car.cr - 2*f_car.a1*f_car.cf;
 C14 = -f_car.cf;
 C15 = -f_car.cf;
 C16 = -f_car.cr;
 C17 = -f_car.cr;
 C21 = C12;
-C22 = f_car.b1^2*f_car.cf + f_car.b2^2*f_car.cf + f_car.b1^2*f_car.cr + f_car.b2^2*f_car.cr;
-C23 = f_car.a1*f_car.b2*f_car.cf - f_car.a1*f_car.b1*f_car.cf - f_car.a2*f_car.b1*f_car.cr + f_car.a2*f_car.b2*f_car.cr;
+C22 = f_car.b1^2*f_car.cf + f_car.b2^2*f_car.cf + f_car.b1^2*f_car.cr + ...
+    f_car.b2^2*f_car.cr;
+C23 = f_car.a1*f_car.b2*f_car.cf - f_car.a1*f_car.b1*f_car.cf - ...
+    f_car.a2*f_car.b1*f_car.cr + f_car.a2*f_car.b2*f_car.cr;
 C24 = -f_car.b1*f_car.cf;
 C25 = f_car.b2*f_car.cf;
 C26 = f_car.b1*f_car.cr;
@@ -100,15 +103,18 @@ f_car.b = [C11 C12 C13 C14 C15 C16 C17;
 
 % Spring matrix
 K11 = 2*f_car.kf + 2*f_car.kr;
-K12 = f_car.b1*f_car.kf - f_car.b2*f_car.kf - f_car.b1*f_car.kr + f_car.b2*f_car.kr;
+K12 = f_car.b1*f_car.kf - f_car.b2*f_car.kf - f_car.b1*f_car.kr + ...
+    f_car.b2*f_car.kr;
 K13 = 2*f_car.a2*f_car.kr - 2*f_car.a1*f_car.kf;
 K14 = -f_car.kf;
 K15 = -f_car.kf;
 K16 = -f_car.kr;
 K17 = -f_car.kr;
 K21 = K12;
-K22 = f_car.kR + f_car.b1^2*f_car.kf + f_car.b2^2*f_car.kf + f_car.b1^2*f_car.kr + f_car.b2^2*f_car.kr;
-K23 = f_car.a1*f_car.b2*f_car.kf - f_car.a1*f_car.b1*f_car.kf - f_car.a2*f_car.b1*f_car.kr + f_car.a2*f_car.b2*f_car.kr;
+K22 = f_car.kR + f_car.b1^2*f_car.kf + f_car.b2^2*f_car.kf + ...
+    f_car.b1^2*f_car.kr + f_car.b2^2*f_car.kr;
+K23 = f_car.a1*f_car.b2*f_car.kf - f_car.a1*f_car.b1*f_car.kf - ...
+    f_car.a2*f_car.b1*f_car.kr + f_car.a2*f_car.b2*f_car.kr;
 K24 = -f_car.b1*f_car.kf - (1/f_car.w)*f_car.kR;
 K25 = f_car.b2*f_car.kf + (1/f_car.w)*f_car.kR;
 K26 = f_car.b1*f_car.kr;

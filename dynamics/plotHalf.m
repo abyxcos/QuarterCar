@@ -8,7 +8,7 @@ close all;
     initGlobalsHalf;
     
     % Run the quarter car model
-    [t, x] = ode45(@(t, x) modelHalf(t, x, h_car), [0 6], ...
+    [t, x] = ode45(@(t, x) modelHalf(t, x, h_car), [0 sim_time], ...
         [0; 0; 0; 0; 0; 0; 0; 0]);
     
     % Determine the accelerations based off the returned velocities

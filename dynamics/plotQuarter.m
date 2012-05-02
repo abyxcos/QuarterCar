@@ -8,7 +8,7 @@ function plotQuarter()
     initGlobalsQuarter;
     
     % Run the quarter car model
-    [t, x] = ode45(@(t, x) modelQuarter(t, x, q_car), [0 5], [0; 0; 0; 0]);
+    [t, x] = ode45(@(t, x) modelQuarter(t, x, q_car), [0 sim_time], [0; 0; 0; 0]);
 
     % Determine the accelerations based off the returned velocities
     accel_b = diff(x(:, 3))./diff(t);

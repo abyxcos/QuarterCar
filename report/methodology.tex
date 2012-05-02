@@ -1,2 +1,14 @@
 \section{Methodology}
+The goal of this project is to apply various high-level control algorithms, in particular potential field based methods, for use in robotic convoys driving at high speed over rough terrain. As an initial step, the following algorithm to control the convoy was developed and implemented on three Khepera III robots. The trajectory of motion was generated using a potential field algorithm.
 
+Due to hardware limitations, the Khepera robots were only used to simulate the potential field control algorithm. The robotâs lack the ability to traverse rough terrain, therefore the high speed convoying and rough terrain navigation was simulated through MATLAB.
+
+The potential field control algorithm was implemented in MATLAB. It is capable of successfully leading n-number of robots from the start position to the goal, assuming that the wheeled mobile robots move in the horizontal plane. The aim was to design a control law for n number of unconnected wheeled autonomous robots to follow a lead robots trajectory generated from the potential field algorithm, while maintaining a constant distance from each other. The control algorithm utilizes the potential field force equation FIXME: (1) to create a matrix of possible configurations for the movement of the robot. The robots' trajectories are defined by the following control equations:
+
+FIXME
+$$q_n=q+-K*F(q)q$$
+$$q_{n(r)}=q_{(r+1)}-o$$
+
+Equation FIXME (2) determines the lead robots next position ($q_n$) based on its current position ($q$) and the potential field force equation FIXME (1). The position $q$ and $q_n$ are 2x1 matrices of the form $[x y]^T$. The following robots' new positions ($q_{n(r)}$) are determined by equation FIXME (3) for a simple leader-follower simulation. The offset from the lead robot ($q_{(r+1)}$) is $o$, a 2x1 matrix of the form $[x y]^T$ representing the straight-line $x$ and $y$ distance between the two robots.
+
+In addition to a simple leader-follower simulation, a second simulation with a smoothing algorithm is implemented in MATLAB. The smoothing algorithm accomplishes two goals; first, if a following robots leader disappears (i.e. breaks down) the follower becomes the leader and reaches its goal. Second, the following robots are able to follow a smoother trajectory to the goal. A smoother trajectory has less radical turns and directional adjustments required by the robot. The more follower robots, the smoother the final trajectory becomes. This algorithm uses these two equations for the follower robots:

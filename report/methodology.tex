@@ -2,7 +2,7 @@
 \section{Potential fields}
 The goal of this project is to apply various high-level control algorithms, in particular potential field based methods, for use in robotic convoys driving at high speed over rough terrain. As an initial step, the following algorithm to control the convoy was developed and implemented on three Khepera III robots. The trajectory of motion was generated using a potential field algorithm.
 
-Due to hardware limitations, the Khepera robots were only used to simulate the potential field control algorithm. The robotâs lack the ability to traverse rough terrain, therefore the high speed convoying and rough terrain navigation was simulated through MATLAB.
+Due to hardware limitations, the Khepera robots were only used to simulate the potential field control algorithm. The robot's lack the ability to traverse rough terrain, therefore the high speed convoying and rough terrain navigation was simulated through MATLAB.
 
 The potential field control algorithm was implemented in MATLAB. It is capable of successfully leading n-number of robots from the start position to the goal, assuming that the wheeled mobile robots move in the horizontal plane. The aim was to design a control law for n number of unconnected wheeled autonomous robots to follow a lead robots trajectory generated from the potential field algorithm, while maintaining a constant distance from each other. The control algorithm utilizes the potential field force equation \eqref{eq:potential_fields} to create a matrix of possible configurations for the movement of the robot. The robots' trajectories are defined by the following control equations:
 \begin{equation} \label{eq:pot_lead}
@@ -28,7 +28,7 @@ In addition to a simple leader-follower simulation, a second simulation with a s
 
 Equation \eqref{eq:pot_follow_force} uses the same potential field algorithm as the other simulation except for follower robots, where instead of the attractive field being assigned by the goal position; the attraction is defined by the robot's respective leader's position. For each time step, the robot's leader's position becomes the attractive force \eqref{eq:pot_follow_force} and a new position $q_{n(r)}$ is calculated based on it \eqref{eq:pot_follow_q}. Using this method, the following robots follow smoother trajectories because they react to the information learned by their leader about the terrain. It also solves the issue of a leader robot breaking down; the following robot becomes the new leader and successfully reaches the goal.
 
-The Khepera III's that were used to impliment the potential fields simulation use the standard differential drive method. The kinematic equations for this type of robot are:
+The Khepera III's that were used to implement the potential fields simulation use the standard differential drive method. The kinematic equations for this type of robot are:
 \begin{eqnarray} \label{eq:diff_drive}
 	\dot{x_i} &=& v_i(t)\cos\theta_i\\
 	\dot{y_i} &=& v_i(t)\sin\theta_i\\
@@ -38,4 +38,12 @@ The Khepera III's that were used to impliment the potential fields simulation us
 where $(x_i,y_i)$ are the coordinates of the reference point of i-th robot in the Cartesian frame of reference. $\theta_i$ is its orientation angle with respect to the positive x-axis. $v_i$ and $\omega_i(t)$ are the linear and angular velocities, respectively.
 
 \section{Robot tracking}
+To calculate the current location of the robot in the world based off the current ground elevation and/or disturbances, the dynamics of the system are required. The dynamics of car based systems take on the following characteristic form:
+\begin{equation} \label{eq:car_characteristic}
+[M]\ddot{x}+[b]\dot{x}+[k]x=F
+\end{equation}
+
+where $[M]$ are the mass coefficients, $[b]$ are the damping coefficients, and $[k]$ are the spring coefficients. The full realization of this characteristic equation may be seen in appendix \ref{a:dynamics}.
+
+Knowing the position and changes in the center of mass of the vehicle, equation \eqref{eq:car_characteristic} may also be used to calculate the inverse dynamics of the system. This allows for a following vehicle to be able to calculate the ground input on the leading vehicle based off it's movements.
 

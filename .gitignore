@@ -1,0 +1,11 @@
+# Matlab temp files
+*~
+
+# Temporary Matlab movie output
+car.avi
+
+# Latex temp files
+*.aux
+*.log
+*.toc
+

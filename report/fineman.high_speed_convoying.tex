@@ -41,10 +41,6 @@
 
 \usepackage{url}
 
-% correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
-
-
 \begin{document}
 
 \title{High speed robotic convoying over rough terrain}
@@ -55,12 +51,12 @@
 
 \tableofcontents
 
-\input{introduction.tex}
-\input{related.tex}
-\input{methodology.tex}
-\input{results.tex}
-\input{conclusion.tex}
-\input{future.tex}
+\include{introduction}
+\include{related}
+\include{methodology}
+\include{results}
+\include{conclusion}
+\include{future}
 
 \addcontentsline{toc}{chapter}{\numberline{}Acknowledgements}
 \chapter*{Acknowledgment}
@@ -83,8 +79,7 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 \end{thebibliography}
 
 \appendix
-\input{appendix.tex}
+\include{appendix}
 
 \end{document}
-
 

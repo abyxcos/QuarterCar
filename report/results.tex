@@ -5,3 +5,17 @@ Running each of the dynamic models (quarter car, half car, full car,) produced a
 
 Running concurrently with the dynamics are the inverse dynamics. These are calculated from the point of view of a system following the leader. The inverse dynamic model is able to correctly predict the sag of the system from its 0-configuration within 1\% error. For most of the terrain we generated, the inverse dynamics were able to correctly predict the response of the system within 2\%-5\% error. These large bumps are the most extreme case we were able to find. They exhibit up to 10\% instantaneous error; however they drop back to a baseline 1\% error within 0.2 seconds. This error is a result of the naive approach taken with calculating the wheel states using the last time step. If the states were filtered, the estimates are even closer. However, there was not time to create a rigorous filter for this purpose.
 
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fullcar_2cm.png}
+	\caption{The response of a car traversing a 2cm bump head on.}
+	\label{fig:fullcar_2cm}
+\end{figure}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fullcar_inverse_2cm.png}
+	\caption{The estimation of a car traversing a 2cm bump head on.}
+	\label{fig:fullcar_2cm}
+\end{figure}
+

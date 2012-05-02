@@ -1,10 +1,10 @@
-\section{Related Work}
-\subsection{Convoying}
+\chapter{Related Work}
+\section{Convoying}
 Robotic convoying is a significant research problem in mobile robotics. This problem has been addressed from different points of view, e.g., artificial vision, control theory, artificial intelligence, etc. [1]. Most existing mobile robot systems still involve a single robot working alone, while there are a wide range of potential applications for robots acting in concert [1]. 
 
 The authors of [2] discuss how a following robot imitates its lead robot, where each of the following robots track the angular and linear velocity of its lead robot. They also presented how to convoy with constant distance between robots while analyzing the case as Velocity Pursuit, Deviated Pursuit, and Proportional Navigation.
 
-\subsection{Potential Fields}
+\section{Potential Fields}
 The study of groups of multiple autonomous mobile robots has been of great interest [2]. In high-speed convoying, fast and efficient coordinated maneuvers are a must, as well as quickly processing data to make a decision. Biologists have observed remarkable group-level characteristics in animal aggregations such as swarms, flocks, school and herds [2]. Some of these characteristic are the ability to make very fast and efficient coordinated maneuvers, quickly process data and to cooperatively make decisions. Thus, there is a significant interest within the robotic community, to better understand the biological imperative and exploit it by incorporating similar principles in artificial robot collectives.  
 
 Researchers typically refer to the use of potential field as a means for assisting a robot to move from one initial configuration to a desired final configuration without colliding with any obstacles. Potential fields consist of force vectors, caused by the obstacles or target positions, which may be linear or tangential and they may have characteristics of repulsive, attractive or random, depending on the state of the agent with respect to its environment. [3] It was originally developed as an on-line collision avoidance approach, applicable when the robot does not have a prior model of the obstacles, but rather senses them during motion execution. [4] The most common potential field function is defined as:
@@ -13,7 +13,7 @@ $$F(q)=-\nabla(U_a(q)+U_r(q))$$
 
 It is defined over free space as the sum of an $U_a$ attractive potential pulling the robot toward the goal configuration and a $U_r$ repulsive potential pushing the robot away from the obstacles [5]. This model attempts to find a collision-free, feasible, path in the neighborhood of the initial estimate. The goal is to define a path for the robot to follow, starting from the initial position moving towards the end/goal position calculated by the negative gradient of the entire field. If the start and the goal configurations cannot be connected through a sequence of feasible configurations, the initial path is then assumed not to lead to a solution. The potential field method has increased in popularity for the control of mobile robots, due to its mathematical simplicity [5].
 
-\subsection{Car Models}
+\section{Car Models}
 In order to study the dynamics of a vehicle system, these are typically modeled as a quarter car, a half car, and a full car. [1]
 
 Quarter Car: To model a car, the typical approach is to break it down into smaller parts, and then recombine the parts at the end. To begin with, a quarter car model is created, showing only one wheel, constrained to one dimension (vertical displacement,) and the associated suspension[1, 3, 12]. The quarter car model is shown in figure FIXME. The car body is represented by the mass M and is connected to a suspension system consisting of a spring K and a damper B . The suspension is connected to the tire which is modeled as a mass M and a spring K connecting it to the road.

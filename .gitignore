@@ -6,6 +6,8 @@ car.avi
 
 # Latex temp files
 *.aux
+*.bbl
+*.blg
 *.log
 *.toc
 

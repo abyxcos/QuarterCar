@@ -17,9 +17,9 @@ function xdot = modelFull(t, x, p)
         0;
         0;
         disturbance_step(t)*p.ktf;
-        disturbance_step(t)*p.ktf;
+        0*disturbance_step(t)*p.ktf;
         disturbance_step(t-p.back_lag)*p.ktr;
-        disturbance_step(t-p.back_lag)*p.ktr;
+        0*disturbance_step(t-p.back_lag)*p.ktr;
     ];
     
     % Pull out position and velocity, calculate acceleration.

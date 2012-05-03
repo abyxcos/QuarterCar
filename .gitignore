@@ -10,5 +10,7 @@ Workspace.png
 *.bbl
 *.blg
 *.log
+*.lof
+*.lot
 *.toc
 

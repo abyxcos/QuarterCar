@@ -1,10 +1,8 @@
 \chapter{Methodology}
 \section{Potential fields}
-The goal of this project is to apply various high-level control algorithms, in particular potential field based methods, for use in robotic convoys driving at high speed over rough terrain. As an initial step, the following algorithm to control the convoy was developed and implemented on three Khepera III robots. The trajectory of motion was generated using a potential field algorithm.
+The following algorithm to control a convoy was developed and implemented on three Khepera III robots. The trajectory of motion was generated using a version of the potential fields algorithm described in the previous section.
 
-Due to hardware limitations, the Khepera robots were only used to simulate the potential field control algorithm. The robot's lack the ability to traverse rough terrain, therefore the high speed convoying and rough terrain navigation was simulated through MATLAB.
-
-The potential field control algorithm was implemented in MATLAB. It is capable of successfully leading n-number of robots from the start position to the goal, assuming that the wheeled mobile robots move in the horizontal plane. The aim was to design a control law for n number of unconnected wheeled autonomous robots to follow a lead robots trajectory generated from the potential field algorithm, while maintaining a constant distance from each other. The control algorithm utilizes the potential field force equation \eqref{eq:potential_fields} to create a matrix of possible configurations for the movement of the robot. The robots' trajectories are defined by the following control equations:
+The aim was to design a control law for n number of unconnected wheeled autonomous robots to follow a lead robot's trajectory generated from the potential field algorithm, while maintaining a constant distance from each other. The control algorithm utilizes the potential field force equation \eqref{eq:potential_fields} to create a matrix of possible configurations for the movement of the robot. The robots' trajectories are defined by the following control equations:
 \begin{equation} \label{eq:pot_lead}
 	q_n=q+-K*F(q)q
 \end{equation}

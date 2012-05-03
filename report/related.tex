@@ -30,7 +30,7 @@ To model a car, the typical approach is to break it down into smaller parts, and
 \end{figure}
 
 \subsection{Half car}
-The half car model represents a two-dimensional view of the vehicle head-on as shown in figure \ref{fig:half_car}. It is actuated in two dimensions, vertical displacement and rotation about the center of gravity. Horizontal motion (slip) may also be shown on this model. As can be seen from the figure, the half car model is composed of two quarter car models acting on a common strut to realize roll.
+The half car model represents a two-dimensional view of the vehicle head-on as shown in figure \ref{fig:half_car}. Figure \ref{fig:half_car_pretty} shows the half car model overlaid on a car body as reference. It is actuated in two dimensions, vertical displacement and rotation about the center of gravity. Horizontal motion (slip) may also be shown on this model. As can be seen from the figure, the half car model is composed of two quarter car models acting on a common strut to realize roll.
 
 \begin{figure}[t]
 	\centering
@@ -39,13 +39,27 @@ The half car model represents a two-dimensional view of the vehicle head-on as s
 	\label{fig:half_car}
 \end{figure}
 
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/half_car_pretty.png}
+	\caption{A generalized half car model overlaid on a car body \cite{book:jazar}.}
+	\label{fig:half_car_pretty}
+\end{figure}
+
 \subsection{Full car}
-Full Car. The full car model represents a three-dimensional view of the vehicle as shown in figure \ref{fig:full_car}. The full car model is composed of two half car models, one representing each side (front and back.) From these models one gets a combined roll and pitch. There is then a third (top down) view added to the model that allows for the calculation of yaw, and factors the input velocity into the model.
+Full Car. The full car model represents a three-dimensional view of the vehicle as shown in figure \ref{fig:full_car}. Figure \ref{fig:full_car_pretty} shows the full car model overlaid on a car body as reference. The full car model is composed of two half car models, one representing each side (front and back.) From these models one gets a combined roll and pitch. There is then a third (top down) view added to the model that allows for the calculation of yaw, and factors the input velocity into the model.
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/full_car.png}
 	\caption{A generalized full car model with roll-bars \cite{book:jazar}.}
 	\label{fig:full_car}
+\end{figure}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/full_car_pretty.png}
+	\caption{A generalized full car model overlaid on a car body \cite{book:jazar}.}
+	\label{fig:full_car_pretty}
 \end{figure}
 

@@ -1,6 +1,6 @@
 \chapter{Implementation}
-%\section{Potential fields}
-%The potential fields control algorithm simulation was implemented inside MATLAB, as described above.
+\section{Potential fields}
+The potential fields control algorithm simulation was implemented inside MATLAB, as described above. It is capable of successfully leading n-number of robots from the start position to the goal, assuming that the wheeled mobile robots move in the horizontal plane. Due to hardware limitations, the Khepera robots were only used to simulate the potential field control algorithm. The robot's lack the ability to traverse rough terrain, therefore the high speed convoying and rough terrain navigation was simulated through MATLAB.
 
 \section{Dynamics}
 A simulation of the robot was created in MATLAB using the derived dynamics. A terrain was given as input, and the robot was simulated driving over it, returning the state of it's centers of mass. To calculate the state, the ode45 solver in MATLAB was used to iterate over the full version of the characteristic equation \eqref{eq:car_characteristic}. This gave access to the full state of the centers of mass, namely the accelerations, velocities, and positions of the body center of mass, tire centers of mass, and the body angles.

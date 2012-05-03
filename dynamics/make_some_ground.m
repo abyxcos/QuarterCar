@@ -9,7 +9,7 @@
 %function [x,y,z] = make_some_ground(t_start, t_end)
 function z = make_some_ground(t_start, t_end)
     j=1;
-    for i=t_start:0.1:t_end
+    for i=t_start:0.5:t_end
         ground(j)=disturbance_step(i);
         j=j+1;
     end

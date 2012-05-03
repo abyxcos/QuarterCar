@@ -42,8 +42,8 @@ function animateFull
     size(ground_z)
     
     % Set the camera angle
-    %view(45, 30);
-    view(0, 0);
+    view(45, 30);
+    %view(0, 0);
     axis([0 150 -20 20 -.3 .1]);
     
     % Make a video file (30 frames per second over 5 seconds)
@@ -147,7 +147,7 @@ function animateFull
         % Create the mesh at a proper offset. The body is at
         % z=0, and the wheels are at z=-0.25
         [g_face, g_vert, g_color] = ...
-            surf2patch(0:1.29:130, -20:0.4:20, ground_z-0.25+f_car.h_wheel);
+            surf2patch(0:6.2:130, -20:2:20, ground_z-0.25+f_car.h_wheel);
         set(ground_p, 'Faces', g_face, 'Vertices', g_vert);
         
         % Check if this frame should be captured and update the next

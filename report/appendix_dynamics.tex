@@ -1,0 +1,103 @@
+\chapter{Dynamics}
+
+\section{Car model derivation}
+\label{a:dynamics}
+The dynamics for a simple car takes on the characteristic form shown in equation \eqref{eq:car_characteristic}:
+\begin{equation}
+[M]\ddot{x}+[b]\dot{x}+[k]x=F
+\end{equation}
+However, the full (populated) dynamic models are significantly more complicated, and reproduced in full below.
+
+\begin{center}
+\begin{tabular}{| l | c |}
+\hline
+Notation & Description \\
+\hline
+
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Quarter car}
+
+
+
+\subsection{Half car}
+
+
+
+\subsection{Full car}
+
+
+
+\section{Car model parameter values}
+The simulation was tested with several different car parameters from normal sedans and buses to R.C. trucks. However, most of the work was done using the parameters for the sedan found in Vehicle Dynamics \cite{book:jazar}. The specific values used are reproduced below. The values in parenthesis describe a more full car without the geometric center and center of mass co-located.
+
+\subsection{Mass values}
+\begin{center}
+\begin{tabular}{| l | c |}
+\hline
+Object & Mass (kg) \\
+\hline
+Body mass & 840 \\
+Front wheel mass & 53 \\
+Rear wheel mass & 53 (76) \\
+X inertia & 820 \\
+Y inertia & 1100 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Vehicle lengths}
+\begin{center}
+\begin{tabular}{| l | c |}
+\hline
+Object & Length (m) \\
+\hline
+Center of mass to front wheel & 1.4 \\
+Center of mass to rear wheel & 1.4 (1.47) \\
+Center of mass to left wheel & 0.7 (0.75) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Spring values}
+\begin{center}
+\begin{tabular}{| l | c |}
+\hline
+Object & Stiffness (N/m) \\
+\hline
+Front suspension & 10,000 \\
+Rear suspension & 10,000 (13.000) \\
+Front tire & 200,000 \\
+Rear tire & 200,000 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Damping values}
+\begin{center}
+\begin{tabular}{| l | c |}
+\hline
+Object & Damping (N*s/m) \\
+\hline
+Front suspension & 9,600 \\
+Rear suspension & 9,600 \\
+Tires & 0 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Miscellaneous values}
+\begin{center}
+\begin{tabular}{| l | c |}
+\hline
+Object & Value \\
+\hline
+Maximum speed & 13 m/s \\
+\hline
+\end{tabular}
+\end{center}
+

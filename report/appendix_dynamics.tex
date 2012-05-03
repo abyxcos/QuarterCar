@@ -15,51 +15,58 @@ Notation & Description \\
 \hline
 mu & Unsprung mass; body mass \\
 ms & Sprung mass; wheel mass \\
-mf & Front tire mass \\
-mr & Rear tire mass \\
+mf/mr & Front/rear tire mass \\
 \hline
 Ix & X Inertia; roll \\
 Iy & Y Inertia; pitch \\
 \hline
-ku & Unsprung spring; suspension spring \\
+ku & Unsprung spring; suspension spring constant \\
 ks & Sprung spring; tire spring constant \\
+kf/kr & Front/rear suspension spring constant \\
+ktf/ktr & Front/rear tire spring constant \\
 \hline
 bu/cu & Unsprung damper; suspension damping \\
 bs/cs & Sprung damper; tire damping constant \\
+cf/cr & Front/rear suspension damping constant \\
+\hline
+a1/a2 & Distance from the center of mass to the front/rear wheels \\
+b1/b2 & Distance from the center of mass to the left/right wheels \\
 \hline
 \end{tabular}
 \end{center}
 
+% Quarter car dynamics
 \subsection{Quarter car}
-\begin{equation} \label{eq:quarter_car_m}
+\begin{equation*} \label{eq:quarter_car_m}
 	[M] = \left[
 		\begin{array}{c c}
 		ms & 0 \\
 		0 & mu \\
 		\end{array}
 	\right]
-\end{equation}
+\end{equation*}
 
-\begin{equation} \label{eq:quarter_car_b}
+\begin{equation*} \label{eq:quarter_car_b}
 	[b] = \left[
 		\begin{array}{c c}
 		bs & -bs \\
 		-bs & (bs+bu) \\
 		\end{array}
 	\right]
-\end{equation}
+\end{equation*}
 
-\begin{equation} \label{eq:quarter_car_k}
+\begin{equation*} \label{eq:quarter_car_k}
 	[k] = \left[
 		\begin{array}{c c}
 		ks & -ks \\
 		-ks & (ks+ku) \\
 		\end{array}
 	\right]
-\end{equation}
+\end{equation*}
 
+% Half car dynamics
 \subsection{Half car}
-\begin{equation} \label{eq:half_car_m}
+\begin{equation*} \label{eq:half_car_m}
 	[M] = \left[
 		\begin{array}{c c c c}
 		ms & 0 & 0 & 0 \\
@@ -68,15 +75,85 @@ bs/cs & Sprung damper; tire damping constant \\
 		0 & 0 & 0 & mf \\
 		\end{array}
 	\right]
-\end{equation}
+\end{equation*}
 
 
+\begin{equation*} \label{eq:half_car_b}
+	[b] = \left[
+		\begin{array}{c c c c}
+		2*bu & (bu*b1-bu*b2) & -bu & -bu \\
+		(bu*b1 - bu*b2) & (bu*b1^2 + bu*b2^2) & -bu*b1 & bu*b2 \\
+		-bu & -bu*b1 & bu & 0 \\
+		-bu & bu*b2 & 0 & bu \\
+		\end{array}
+	\right]
+\end{equation*}
 
 
+\begin{equation*} \label{eq:half_car_k}
+	[k] = \left[
+		\begin{array}{c c c c}
+		2*ku & (ku*b1 - ku*b2) & -ku & -ku \\
+		(ku*b1 - ku*b2) & (ku*b1^2 + ku*b2^2) & -ku*b1 & ku*b2 \\
+		-ku & -ku*b1 & (ku+ku) & 0 \\
+		-ku & ku*b2 & 0 & ku*ku
+		\end{array}
+	\right]
+\end{equation*}
 
+% Full car dynamics
 \subsection{Full car}
+\begin{equation*} \label{eq:full_car_m}
+	[M] = \left[
+		\begin{array}{c c c c c c c}
+		mu & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & Ix & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & Iy & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & mf & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & mf & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 & mr & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0 & mr \\
+		\end{array}
+	\right]
+\end{equation*}
 
+\begin{equation*} \label{eq:full_car_b}
+	[b] = \left[
+		\begin{array}{c c c c c c c}
+		C11 & C12 & C13 & -cf & -cf & -cr & -cr \\
+		C21 & C22 & C23 & -b1*cf & b2*cf & b1*cr & -b2*cr \\
+		C31 & C32 & C33 & a1*cf & a1*cf & -a2*cr & -a2*cr \\
+		-cf & -b1*cf & a1*cf & cf & 0 & 0 & 0 \\
+		-cf & b2*cf & a1*cf & 0 & cf & 0 & 0 \\
+		-cr & b1*cr & -a2*cr & 0 & 0 & cr & 0 \\
+		-cr & -b2*cr & -a2*cr & 0 & 0 & 0 & cr \\
+		\end{array}
+	\right]
+\end{equation*}
 
+\begin{center}
+\begin{tabular}{| c | l |}
+\hline
+Element & Value \\
+\hline
+
+\hline
+\end{tabular}
+\end{center}
+
+\begin{equation*} \label{eq:full_car_k}
+	[k] = \left[
+		\begin{array}{c c c c c c c}
+		mu & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & Ix & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & Iy & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & mf & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & mf & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 & mr & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0 & mr \\
+		\end{array}
+	\right]
+\end{equation*}
 
 \section{Car model parameter values}
 The simulation was tested with several different car parameters from normal sedans and buses to R.C. trucks. However, most of the work was done using the parameters for the sedan found in Vehicle Dynamics \cite{book:jazar}. The specific values used are reproduced below. The values in parenthesis describe a more full car without the geometric center and center of mass co-located.

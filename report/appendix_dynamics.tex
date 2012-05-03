@@ -9,20 +9,68 @@ The dynamics for a simple car takes on the characteristic form shown in equation
 However, the full (populated) dynamic models are significantly more complicated, and reproduced in full below.
 
 \begin{center}
-\begin{tabular}{| l | c |}
+\begin{tabular}{| c | l |}
 \hline
 Notation & Description \\
 \hline
-
+mu & Unsprung mass; body mass \\
+ms & Sprung mass; wheel mass \\
+mf & Front tire mass \\
+mr & Rear tire mass \\
+\hline
+Ix & X Inertia; roll \\
+Iy & Y Inertia; pitch \\
+\hline
+ku & Unsprung spring; suspension spring \\
+ks & Sprung spring; tire spring constant \\
+\hline
+bu/cu & Unsprung damper; suspension damping \\
+bs/cs & Sprung damper; tire damping constant \\
 \hline
 \end{tabular}
 \end{center}
 
 \subsection{Quarter car}
+\begin{equation} \label{eq:quarter_car_m}
+	[M] = \left[
+		\begin{array}{c c}
+		ms & 0 \\
+		0 & mu \\
+		\end{array}
+	\right]
+\end{equation}
 
+\begin{equation} \label{eq:quarter_car_b}
+	[b] = \left[
+		\begin{array}{c c}
+		bs & -bs \\
+		-bs & (bs+bu) \\
+		\end{array}
+	\right]
+\end{equation}
 
+\begin{equation} \label{eq:quarter_car_k}
+	[k] = \left[
+		\begin{array}{c c}
+		ks & -ks \\
+		-ks & (ks+ku) \\
+		\end{array}
+	\right]
+\end{equation}
 
 \subsection{Half car}
+\begin{equation} \label{eq:half_car_m}
+	[M] = \left[
+		\begin{array}{c c c c}
+		ms & 0 & 0 & 0 \\
+		0 & Ix & 0 & 0 \\
+		0 & 0 & mf & 0 \\
+		0 & 0 & 0 & mf \\
+		\end{array}
+	\right]
+\end{equation}
+
+
 
 
 
@@ -42,8 +90,8 @@ Object & Mass (kg) \\
 Body mass & 840 \\
 Front wheel mass & 53 \\
 Rear wheel mass & 53 (76) \\
-X inertia & 820 \\
-Y inertia & 1100 \\
+Roll inertia & 820 \\
+Pitch inertia & 1100 \\
 \hline
 \end{tabular}
 \end{center}

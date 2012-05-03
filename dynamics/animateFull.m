@@ -2,8 +2,10 @@
 function animateFull
     close all;
     
+    % Start car 1 at t=0
+    % Start car 2 with t=n*sec lag
     [t, x, f_car] = plotFull(0);
-    [t2, x2, f_car] = plotFull(10/f_car.speed);
+    [t2, x2, f_car] = plotFull(2*13/f_car.speed);
     
     figure;
         
@@ -15,15 +17,17 @@ function animateFull
                  1 2 6 5;
                  5 6 7 8];
     
-    % Body and tire patch objects
+    % Ground patch object
     ground_p = patch('FaceColor', 'g');
     
+    % Body and tire patch objects (car 1)
     body = patch('FaceColor', 'r');
     t_br = patch('FaceColor', 'k');
     t_bl = patch('FaceColor', 'k');
     t_fr = patch('FaceColor', 'k');
     t_fl = patch('FaceColor', 'k');
     
+    % Body and tire patch objects (car 2)
     body2 = patch('FaceColor', 'r');
     t2_br = patch('FaceColor', 'k');
     t2_bl = patch('FaceColor', 'k');
@@ -140,8 +144,10 @@ function animateFull
         set(t2_fl, 'Faces', t2_face, 'Vertices', t2_vert);
         
         % Ground
+        % Create the mesh at a proper offset. The body is at
+        % z=0, and the wheels are at z=-0.25
         [g_face, g_vert, g_color] = ...
-            surf2patch(0:1.29:130, -20:0.4:20, ground_z-0.3);
+            surf2patch(0:1.29:130, -20:0.4:20, ground_z-0.25+f_car.h_wheel);
         set(ground_p, 'Faces', g_face, 'Vertices', g_vert);
         
         % Check if this frame should be captured and update the next

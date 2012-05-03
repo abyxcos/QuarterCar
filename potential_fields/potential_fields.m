@@ -14,10 +14,11 @@
 %Function - navfun_fixedpos(NumRobots)
 %-------------------------------------------------------------------------%
 %Inputs - integer ranging from 2-n of the number of robots to simulate
+%       - a boolean if the simulation should output serial commands
 %Outputs - array of the positions followed by the leader robot 
 %Description - main function call for running the simulation
 
-function [traj] = navfun_fixedpos(NumRobots)
+function [traj] = navfun_fixedpos(NumRobots, serial)
 close all
 %-------------------------------------------------------------------------%
 %Declarations
@@ -37,24 +38,30 @@ WL = 70;
 %Distance Offset From Leader (centi-meteters)
 Offset = 25;
 
-try
-    out1 = instrfind;
-    fclose(out1);
-catch error
-    
+if(serial~=0)
+    % Close any leftover serial connections
+    try
+        out1 = instrfind;
+        fclose(out1);
+    catch error
+    end
+
+    % Create a serial connection with the robot,
+    % log in, and start the translation program
+    s = serial('/dev/tty.KHIII13914-BluetoothSer');
+    fopen(s);
+    fprintf(s,'root');
+    fprintf(s,'');
+    fprintf(s,'./khepera3_test');
+
+    % Create a serial connection with the robot,
+    % log in, and start the translation program
+    s2 = serial('/dev/tty.KHIII13914-BluetoothSer');
+    fopen(s2);
+    fprintf(s2,'root');
+    fprintf(s2,'');
+    fprintf(s2,'./khepera3_test');
 end
-
-s = serial('/dev/tty.KHIII13914-BluetoothSer');
-fopen(s);
-fprintf(s,'root');
-fprintf(s,'');
-fprintf(s,'./khepera3_test');
-
-s2 = serial('/dev/tty.KHIII13914-BluetoothSer');
-fopen(s2);
-fprintf(s2,'root');
-fprintf(s2,'');
-fprintf(s2,'./khepera3_test');
 
 %-------------------------------------------------------------------------%
 %Workspace Layout
@@ -114,12 +121,14 @@ hold on
 %-------------------------------------------------------------------------%
 
 %start = ginput(1)
-
- start = [200 450]
- goal = ginput(1)
- 
-%plot start and goal positions
+start = [200 450]
+%plot start position
 plot(start(1), start(2), 'go','markersize',10,'linewidth',2);
+
+% Obtain a goal location
+goal = ginput(1)
+ 
+%plot goal position
 plot(goal(1), goal(2), 'ro','markersize',10,'linewidth',2);
 pause(.2)
 hold on
@@ -239,7 +248,7 @@ while (normGradf > eps)&&(its<1000)
             end 
             
         if its ~= 1
-            buff = RobotNum{2}
+            buff = RobotNum{2};
             [rnum,wr,wl] = calcmove(1,traj(its-1,:),traj(its,:));
             [rnum2,wr2,wl2] = calcmove(1,buff(its-1,:),buff(its,:));
             r = wr*218.72;
@@ -247,12 +256,13 @@ while (normGradf > eps)&&(its<1000)
             r2 = wr2*218.72;
             l2 = wl2*218.72;
             
-            
-            output_string2 = sprintf('setmotspeed %.0f %.0f', l2, r2)
-            output_string = sprintf('setmotspeed %.0f %.0f', l, r)
-            fprintf(s,output_string);
-            fprintf(s2,output_string2);
-            %pause(.00001);
+            if(serial~=0)
+                output_string2 = sprintf('setmotspeed %.0f %.0f', l2, r2)
+                output_string = sprintf('setmotspeed %.0f %.0f', l, r)
+                fprintf(s,output_string);
+                fprintf(s2,output_string2);
+                %pause(.00001);
+            end
             
         end
             
@@ -261,15 +271,17 @@ end
 
 %Leader sucessfully made it to the goal
 if normGradf < eps
-    display('GOAL!!!!')
+    display('GOAL!')
     %Plot final clean trajectory & goal star
     plot(traj(:,1),traj(:,2),'w-','linewidth',2)
     plot(goal(1),goal(2),'cp','markersize',20,'linewidth',2)
 else
     %Leader could not make it to the goal    
-    display('A Path could not be found :(')
+    display('A path could not be found.')
 end
 
+if(serial~=0)
+    % Write 0 to the serial and create a clean state
     output_string = sprintf('setmotspeed 0 0')
     fprintf(s,output_string);
     output_string = sprintf('exit')
@@ -280,6 +292,7 @@ end
     delete(s)
     clear s
     
+    % Write 0 to the serial and create a clean state
     output_string2 = sprintf('setmotspeed 0 0')
     fprintf(s2,output_string2);
     output_string2 = sprintf('exit')
@@ -289,7 +302,9 @@ end
     fclose(s2)
     delete(s2)
     clear s2
+end
 
+end
 
 
 %-------------------------------------------------------------------------%
@@ -314,6 +329,7 @@ robot.theta = mod(atan2(v(2), v(1)), 2*pi);
 
 %plot new robot position
 plot(robot.x, robot.y, 'ko', 'MarkerFaceColor', 'r', 'MarkerSize', 4)
+end
 
 %-------------------------------------------------------------------------%
 %Function - calcdist(pos1, pos2)
@@ -329,6 +345,7 @@ x2 = pos2(1);
 y2 = pos2(2);
 
 dist = sqrt(((x2-x1)^2)+((y2-y1)^2));
+end
 
 %-------------------------------------------------------------------------%
 %Function - calcmove(pos1, pos2) %where pos1 & pos2 are 1x2 arrays of the form [x y]
@@ -350,5 +367,4 @@ w = (thetadot)./dt;
 WR = (v+d*w)/r;
 WL = (v/r)-((d*w)/(2*r));
 Rnum = num;
-
-
+end

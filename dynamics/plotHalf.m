@@ -1,13 +1,13 @@
-% Generate the appropriate plots for the quarter car model
+% Generate the appropriate plots for the half car model
 function plotHalf
 
 close all;
     
-    % Set up enviornment for the quarter car model
+    % Set up enviornment for the half car model
     initGlobals;
     initGlobalsHalf;
     
-    % Run the quarter car model
+    % Run the half car model
     [t, x] = ode45(@(t, x) modelHalf(t, x, h_car), [0 sim_time], ...
         [0; 0; 0; 0; 0; 0; 0; 0]);
     

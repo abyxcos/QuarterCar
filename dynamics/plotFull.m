@@ -1,13 +1,13 @@
-% Generate the appropriate plots for the quarter car model
-function [x, t, f_car] = plotFull
-    close all;
+% Generate the appropriate plots for the full car model
+function [t, x, f_car] = plotFull(delta_t)
+    %close all;
     
-    % Set up enviornment for the quarter car model
+    % Set up enviornment for the full car model
     initGlobals;
     initGlobalsFull;
     
-    % Run the quarter car model
-    [t, x] = ode45(@(t, x) modelFull(t, x, f_car), [0 sim_time], ...
+    % Run the full car model
+    [t, x] = ode45(@(t, x) modelFull(t, x, f_car), [0-delta_t sim_time], ...
         [f_car.h_body; 0; 0; ...
          f_car.h_wheel; f_car.h_wheel; f_car.h_wheel; f_car.h_wheel; ...
          0; 0; 0; ...

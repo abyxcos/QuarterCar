@@ -10,4 +10,4 @@ g = 9.81;
 bump_height=0.02; % 2cm
 
 % Length of the simulation
-sim_time=5; % seconds
+sim_time=10; % seconds

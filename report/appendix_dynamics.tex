@@ -132,11 +132,19 @@ b1/b2 & Distance from the center of mass to the left/right wheels \\
 \end{equation*}
 
 \begin{center}
-\begin{tabular}{| c | l |}
+\begin{tabular}{| c | >{$}l<{$} |}
 \hline
 Element & Value \\
 \hline
-
+C11 & 2*(cf + cr) \\
+C12 & (b1 - b2)*cf - (b1 + b2)*cr \\
+C13 & 2*(a2*cr - a1*cf) \\
+C21 & C12 \\
+C22 & (b1^2 + b2^2)*cf + (b1^2 + b2^2)*cr \\
+C23 & (b2 - b1)*a1*cf - (b1 + b2)*a2*cr \\
+C31 & C13 \\
+C32 & C23 \\
+C33 & 2*cr*(a1^2 + a2^2) \\
 \hline
 \end{tabular}
 \end{center}

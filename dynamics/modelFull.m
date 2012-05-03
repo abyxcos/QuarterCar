@@ -12,13 +12,15 @@ function xdot = modelFull(t, x, p)
     global g;
 
     % Input disturbance matrix
+    % Due to car length, the back wheels hit later
     F = [-p.mu*g;
         0;
         0;
         disturbance_step(t)*p.ktf;
         disturbance_step(t)*p.ktf;
         disturbance_step(t-p.back_lag)*p.ktr;
-        disturbance_step(t-p.back_lag)*p.ktr];
+        disturbance_step(t-p.back_lag)*p.ktr;
+    ];
     
     % Pull out position and velocity, calculate acceleration.
     pos = [x(1); x(2); x(3); x(4); x(5); x(6); x(7)];

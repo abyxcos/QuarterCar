@@ -7,7 +7,7 @@ global g bump_height sim_time;
 g = 9.81;
 
 % Height for disturbance function
-bump_height=0.05; % 2cm
+bump_height=0.02; % 2cm
 
 % Length of the simulation
 sim_time=5; % seconds

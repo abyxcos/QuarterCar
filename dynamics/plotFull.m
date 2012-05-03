@@ -1,5 +1,5 @@
 % Generate the appropriate plots for the quarter car model
-function [x, f_car] = plotFull
+function [x, t, f_car] = plotFull
     close all;
     
     % Set up enviornment for the quarter car model

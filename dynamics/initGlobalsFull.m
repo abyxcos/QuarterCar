@@ -9,11 +9,15 @@ f_car.mr = 53;
 f_car.Ix = 820;
 f_car.Iy = 1100;
 
+% Car speed
+f_car.speed = 13;   % 13m/s ~~ 30 mph
+
 % Lengths
 f_car.a1 = 1.4;
 f_car.a2 = 1.4;
 %f_car.a2 = 1.47;
-f_car.back_lag = 0.1385;
+%f_car.back_lag = 0.1385;
+f_car.back_lag = (f_car.a1+f_car.a2)/f_car.speed;
 f_car.b1 = 0.7;
 f_car.b2 = 0.7;
 %f_car.b2 = 0.75;

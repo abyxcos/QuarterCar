@@ -1,5 +1,6 @@
 % Make an animation of the car over time
-function animateFull(x, f_car)
+function animateFull(x, t, f_car)
+    close all;
     figure;
     
     % Body face references
@@ -21,9 +22,14 @@ function animateFull(x, f_car)
     % Reference unit sphere for tires
     [t_ref_x, t_ref_y, t_ref_z] = sphere();
     
+    % Make the ground
+    ground_z = make_some_ground(0, t(end));
+    size(ground_z);
+    
     % Set the camera angle
-    view(45, 30);
-    axis([-5 5 -5 5 -.3 .1]);
+    %view(45, 30);
+    view(0, 0);
+    axis([0 300 -20 20 -.3 .1]);
     
     % Make a video file (30 frames per second over 5 seconds)
     video = VideoWriter('car.avi');
@@ -35,8 +41,8 @@ function animateFull(x, f_car)
         % Calculate the body position
         body_y_r = 0 - f_car.b2*cos(x(i, 2));
         body_y_l = 0 + f_car.b1*cos(x(i, 2));
-        body_x_b = 0 - f_car.a2*cos(x(i, 3));
-        body_x_f = 0 + f_car.a1*cos(x(i, 3));
+        body_x_b = t(i)*f_car.speed - f_car.a2*cos(x(i, 3));
+        body_x_f = t(i)*f_car.speed + f_car.a1*cos(x(i, 3));
         body_z_br = x(i, 1) - f_car.b2*sin(x(i, 2)) - f_car.a2*sin(x(i, 3));
         body_z_bl = x(i, 1) + f_car.b2*sin(x(i, 2)) - f_car.a2*sin(x(i, 3));
         body_z_fr = x(i, 1) - f_car.b2*sin(x(i, 2)) + f_car.a1*sin(x(i, 3));
@@ -76,14 +82,8 @@ function animateFull(x, f_car)
             (t_ref_z/64) - 0.25 + x(i, 4));
         set(t_fl, 'Faces', t_face, 'Vertices', t_vert);
         
-        % Make the ground
-        ground_z = make_some_ground(i-5, i+5) - 0.3;
-        ground_xy = -5:11/length(ground_z):5;
-        
-        size(ground_z);
-        size(ground_xy);
         [g_face, g_vert, g_color] = ...
-            surf2patch(ground_xy, ground_xy, ground_z);
+            surf2patch(0:1.3:65, -20:0.8:20, ground_z-0.3);
         set(ground_p, 'Faces', g_face, 'Vertices', g_vert);
         
         % Check if this frame should be captured and update the next

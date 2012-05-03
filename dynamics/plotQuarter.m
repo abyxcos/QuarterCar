@@ -21,7 +21,7 @@ function plotQuarter()
     disturbance = zeros([1, length(t)-1]);
     y_p = 0;
     for i = 2 : length(t)
-        y(i) = modelQuarterInverse2(t(i), x(i, :), x(i-1, :), y_p, q_car);
+        y(i) = modelQuarterInverse(t(i), x(i, :), x(i-1, :), y_p, q_car);
         y_p = y(i);
         disturbance(i) = disturbance_step(t(i));
     end

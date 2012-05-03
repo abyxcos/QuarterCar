@@ -24,7 +24,7 @@ close all;
     disturbance = zeros([1, length(t)-1]);
     y_p = [0; 0];
     for i = 2 : length(t)
-        temp=modelHalfInverse2(t(i), x(i, :), x(i-1, :), y_p, h_car);
+        temp=modelHalfInverse(t(i), x(i, :), x(i-1, :), y_p, h_car);
         y(1, i) = temp(1);
         y(2, i) = temp(2);
         y_p = temp;

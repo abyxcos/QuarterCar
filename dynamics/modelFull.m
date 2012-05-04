@@ -8,8 +8,8 @@
 % Returns:
 %     The xdot for the model in its current state
 function xdot = modelFull(t, x, p)
-
     global g;
+    global y_pos delta_t2 t_avoidance t_old;
 
     % Are we far enough away yet?
     % Bump centered at y=0, car width wide

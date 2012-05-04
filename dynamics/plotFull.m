@@ -22,9 +22,15 @@ function [t, x, f_car, t_avoidance] = plotFull(delta_t, t_avoidance)
     
     if delta_t ~= 0
         figure
+        axis([0 10 -10 10]);
+        hold on;
         size(t)
-        size(y_pos)
-        plot(t,x(:,16),'r', t,y_pos','g', t,(-f_car.b1-f_car.b2),'y');
+        size(y_pos')
+        plot(t,x(:,15),'b');
+        plot(t,x(:,16),'r');
+        plot(0:0.002273:10,y_pos','g');
+        plot(t,(-f_car.b1-f_car.b2),'y');
+        hold off;
     end
         
     % Determine the accelerations based off the returned velocities

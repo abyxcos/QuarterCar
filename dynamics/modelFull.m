@@ -16,10 +16,11 @@ function xdot = modelFull(t, x, p)
 
     % Are we far enough away yet?
     % Bump centered at y=0, car width wide
-    if (t < 3.0)
+    if (t < 2.99)
         [delta_y, yaw] = turnLeft(t, p, x(16));
     end
-    if y_pos(end) < (-p.b1-p.b2)
+    %if y_pos(end) < (-p.b1-p.b2)
+    if x(15) < (-p.b1-p.b2)
         missed_bump = 0;
     end
     

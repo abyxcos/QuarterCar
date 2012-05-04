@@ -6,7 +6,7 @@ function animateFull
     % Start car 2 with t=n*sec lag
     [t, x, f_car, t_avoidance] = plotFull(0, 0);
     [t2, x2, f_car, t_avoidance] = ...
-        plotFull(2*13/f_car.speed, t_avoidance);
+        plotFull(3*13/f_car.speed, t_avoidance);
     
     figure;
         
@@ -121,7 +121,7 @@ function animateFull
         
         % Calculate the tire positions
         [t2_face, t2_vert, t2_color] = ...
-            surf2patch((t_ref_x/8) + body2_x_b, ...
+            surf2patch((t_ref_x/8) + body2_x_b + 10, ...
             (t_ref_y/8) + body2_y_r - x(15), ...
             (t_ref_z/64) - 0.25 + x2(i, 6));
         set(t2_br, 'Faces', t2_face, 'Vertices', t2_vert);

@@ -1,3 +1,54 @@
-\chapter{blah blah blah}
-%% FIXME: Control of khepera iii's over serial and blah blah blah
+\chapter{Working with Khepera III's over serial}
+Following are some miscellaneous notes on working with the Khepera III robots via a bluetooth serial connection. Khepera III robots with a KoreBot II board disable the direct Khepera III bluetooth to serial connection and instead expose serial access to the on-board Linux distribution via the bluetooth connection. The Khepera III's (from here on, the use of the KoreBot II module is assumed) identify themselves as ``KHIII id'' over bluetooth. They can connect with any passcode (``0000'' was used,) however the connection is slow to initialize, so two consecutive attempts may be needed with different passcodes. Once connected, they are able to provide a standard serial device (/dev/tty.KHIIIid-BluetoothSer on Mac OSX.) Picocom\footnote{\url{http://code.google.com/p/picocom/}} is known to work with the default (9600) baud rate, however higher baud rates are supported.
+
+ASCII files can be transfered seamlessly via `cat.' Once connected with a serial terminal, the command ``cat $>>$ filename $<<$ EOF'' on the Khepera will listen until an end of file (EOF) character is recieved. On the connected computer, piping a file to the device will transfer it (``cat filename /dev/tty.KHIIIid-BluetoothSer'' on MacOSX.) Once the file is transfered, end of file (ctrl-d) can be manually entered on the Khepera to close and save the file.
+
+However, binary files (such as .p12 encrypted wireless certificates) cannot be transfered via this method. When interpreted in ASCII mode, the binary is seen as control sequences which are executed, causing this method to fail. The Khepera provides tools for use with the zmodem transmission protocol which may be used. These tools are rarely installed on modern computers, and can generally be provided by the lrzsz\footnote{\url{http://ohse.de/uwe/software/lrzsz.html}} package on most Linux distributions and Mac OSX. Picocom integrates with these tools automatically, so once installed, binary files may be transmitted from the computer to the connected Khepera. The default key combination in Picocom is C-a C-r.
+
+As a note, wpa\_supplicant does not provide an init script, so it must be started manually, or via a user provided init script, such as the one below. The dhcp client, udhcpc also does not start automatically.
+\begin{verbatim}
+#!/bin/sh
+wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B
+udhcpc
+# end of script
+\end{verbatim}
+
+MATLAB makes it very easy to work with the Khepera's over serial. The following code will create a serial object and open it, then log in and execute a program.
+\begin{verbatim}
+s = serial('/dev/tty.KHIII13914-BluetoothSer');
+fopen(s);
+fprintf(s,'root');
+fprintf(s,''); % Blank password
+fprintf(s,'./khepera3_test');
+\end{verbatim}
+
+Sending text output and commands is as simple as using fprintf. The following code demonstrates generating an output string controlling the wheel speed, then sending it to the running Khepera demo program. The use of the C-styled 0-decimal length floating point output simulates sending integers.
+\begin{verbatim}
+output_string = sprintf('setmotspeed %.0f %.0f', speed_l, speed_r);
+fprintf(s,output_string);
+\end{verbatim}
+
+The serial object is also easy to close and clean up, as demonstrated by the following code.
+\begin{verbatim}
+% Write 0 to the robot and create a clean state
+output_string = sprintf('setmotspeed 0 0');
+fprintf(s,output_string);
+output_string = sprintf('exit');
+fprintf(s,output_string);
+output_string = sprintf('exit');
+fprintf(s,output_string);
+fclose(s);
+delete(s);
+clear s;
+\end{verbatim}
+
+If the bluetooth serial connection fails, or the program exits uncleanly, the remaining serial objects are also easy to gather up and close, either manually or automatically.
+\begin{verbatim}
+try
+   out1 = instrfind;
+   fclose(out1);
+catch error
+
+end
+\end{verbatim}
 

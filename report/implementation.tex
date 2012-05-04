@@ -12,5 +12,12 @@ The potential fields control algorithm simulation was implemented inside MATLAB,
 \section{Dynamics}
 A simulation of the robot was created in MATLAB using the derived dynamics. A terrain was given as input, and the robot was simulated driving over it, returning the state of it's centers of mass. To calculate the state, the ode45 solver in MATLAB was used to iterate over the full version of the characteristic equation \eqref{eq:car_characteristic}. This gave access to the full state of the centers of mass, namely the accelerations, velocities, and positions of the body center of mass, tire centers of mass, and the body angles.
 
-Following this, a second robot was simulated driving a fixed distance behind the first one and matching the speed. It recorded the changes in position, velocity, and acceleration of the body center of mass of the vehicle in front. Because the system is not rigid, the dynamics depend on the position of the wheels. However, this data would not be able to be recorded outside of a simulation. To account for this, the following robot runs the dynamics on the last state of the lead robot in an attempt to guess the current location of the wheels. The estimated wheel states from the last time step are combined with the real body states from the current time step to create an estimation of the change in ground height under the lead vehicle.
+Following this, a second robot was simulated driving a fixed distance behind the first one and matching the speed, as shown in figure \ref{fig:naive_convoy}. It recorded the changes in position, velocity, and acceleration of the body center of mass of the vehicle in front. Because the system is not rigid, the dynamics depend on the position of the wheels. However, this data would not be able to be recorded outside of a simulation. To account for this, the following robot runs the dynamics on the last state of the lead robot in an attempt to guess the current location of the wheels. The estimated wheel states from the last time step are combined with the real body states from the current time step to create an estimation of the change in ground height under the lead vehicle.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/naive_convoy.png}
+	\caption{A screen capture of the convoy approaching a bump.}
+	\label{fig:naive_convoy}
+\end{figure}
 

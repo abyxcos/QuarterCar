@@ -29,7 +29,7 @@ function animateFull
     t_fl = patch('FaceColor', 'k');
     
     % Body and tire patch objects (car 2)
-    body2 = patch('FaceColor', 'r');
+    body2 = patch('FaceColor', 'b');
     t2_br = patch('FaceColor', 'k');
     t2_bl = patch('FaceColor', 'k');
     t2_fr = patch('FaceColor', 'k');

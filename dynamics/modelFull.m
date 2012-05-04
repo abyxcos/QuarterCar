@@ -13,7 +13,7 @@ function xdot = modelFull(t, x, p)
 
     % Are we far enough away yet?
     % Bump centered at y=0, car width wide
-    yaw = turnLeft(t, p, x(16));
+    [delta_y, yaw] = turnLeft(t, p, x(16));
     
     % Input disturbance matrix
     % Due to car length, the back wheels hit later
@@ -49,6 +49,6 @@ function xdot = modelFull(t, x, p)
     xdot(13) = accel(6);
     xdot(14) = accel(7);
     
-    xdot(15) = 0;
+    xdot(15) = p.speed*sin(yaw);
     xdot(16) = yaw;
 end

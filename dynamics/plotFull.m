@@ -1,8 +1,11 @@
 % Generate the appropriate plots for the full car model
 function [t, x, f_car, t_avoidance] = plotFull(delta_t, t_avoidance)
     %close all;
-    global delta_t2;
+    global delta_t2 t_avoidance2 y_pos t_old;
     delta_t2=delta_t;
+    t_avoidance2=t_avoidance;
+    y_pos = 0;
+    t_old = 0;
     
     % Set up enviornment for the full car model
     initGlobals;
@@ -16,9 +19,11 @@ function [t, x, f_car, t_avoidance] = plotFull(delta_t, t_avoidance)
          0; 0; 0; 0; ...    % Wheel position
          0; 0;]);           % Y position and yaw
          %t_avoidance-delta_t; 0;]); % Pass through time to turn at
-     
-    figure
-    plot(t,x(:,15), t,x(:,16),'b');
+    
+    if delta_t ~= 0
+        figure
+        plot(t,x(:,16),'r', t,y_pos,'g', t,(-f_car.b1-f_car.b2),'y');
+    end
     
     % Determine the accelerations based off the returned velocities
     accel_b = diff(x(:, 8))./diff(t);

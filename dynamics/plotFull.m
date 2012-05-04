@@ -20,18 +20,20 @@ function [t, x, f_car, t_avoidance] = plotFull(delta_t, t_avoidance)
          0; 0;]);           % Y position and yaw
          %t_avoidance-delta_t; 0;]); % Pass through time to turn at
     
-    if delta_t ~= 0
-        figure
-        axis([0 10 -10 10]);
-        hold on;
-        size(t)
-        size(y_pos')
-        plot(t,x(:,15),'b');
-        plot(t,x(:,16),'r');
-        plot(0:0.002273:10,y_pos','g');
-        plot(t,(-f_car.b1-f_car.b2),'y');
-        hold off;
-    end
+%     if delta_t ~= 0
+%         figure
+%         axis([0 10 -10 10]);
+%         hold on;
+%         size(t)
+%         size(y_pos')
+%         plot(t,x(:,15),'b');
+%         plot(t,x(:,16),'r');
+%         plot(y_pos','g');
+%         plot(t,(-f_car.b1-f_car.b2),'y');
+%         hold off;
+%         figure
+%         plot(y_pos','g');
+%     end
         
     % Determine the accelerations based off the returned velocities
     accel_b = diff(x(:, 8))./diff(t);

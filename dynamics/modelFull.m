@@ -10,10 +10,16 @@
 function xdot = modelFull(t, x, p)
     global g;
     global y_pos delta_t2 t_avoidance t_old;
+    missed_bump = 1;
 
     % Are we far enough away yet?
     % Bump centered at y=0, car width wide
-    [delta_y, yaw] = turnLeft(t, p, x(16));
+    if (t < 3.0)
+        [delta_y, yaw] = turnLeft(t, p, x(16));
+    end
+    if y_pos(end) < (-p.b1-p.b2)
+        missed_bump = 0;
+    end
     
     % Input disturbance matrix
     % Due to car length, the back wheels hit later
@@ -21,9 +27,9 @@ function xdot = modelFull(t, x, p)
         0;
         0;
         disturbance_step(t)*p.ktf;
-        disturbance_step(t)*p.ktf;
+        missed_bump*disturbance_step(t)*p.ktf;
         disturbance_step(t-p.back_lag)*p.ktr;
-        disturbance_step(t-p.back_lag)*p.ktr;
+        missed_bump*disturbance_step(t-p.back_lag)*p.ktr;
     ];
     
     % Pull out position and velocity, calculate acceleration.

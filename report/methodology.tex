@@ -1,8 +1,6 @@
 \chapter{Methodology}
 \section{Potential fields}
-The following algorithm to control a convoy was developed and implemented on three Khepera III robots. The trajectory of motion was generated using a version of the potential fields algorithm described in the previous section.
-
-The aim was to design a control law for n number of unconnected wheeled autonomous robots to follow a lead robot's trajectory generated from the potential field algorithm, while maintaining a constant distance from each other. The control algorithm utilizes the potential field force equation \eqref{eq:potential_fields} to create a matrix of possible configurations for the movement of the robot. The robots' trajectories are defined by the following control equations:
+The following algorithm to control a convoy was developed and implemented on three Khepera III robots. The trajectory of motion was generated using a version of the potential fields algorithm described in the previous section. The aim was to design a control law for n number of unconnected wheeled autonomous robots to follow a lead robot's trajectory while maintaining a constant distance from each other. The lead robot's trajectory will be generated from the potential field algorithm. The control algorithm utilizes the potential field force equation \eqref{eq:potential_fields} to create a matrix of possible configurations for the movement of the robot. The robots' trajectories are defined by the following control equations:
 \begin{equation} \label{eq:pot_lead}
 	q_n=q+-K*F(q)q
 \end{equation}

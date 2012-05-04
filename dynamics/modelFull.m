@@ -10,6 +10,8 @@
 function xdot = modelFull(t, x, p)
     global g;
     global y_pos delta_t2 t_avoidance t_old;
+    delta_y = 0;
+    yaw = 0;
     missed_bump = 1;
 
     % Are we far enough away yet?

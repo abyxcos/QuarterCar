@@ -17,7 +17,7 @@ function z = make_some_ground(t_start, t_end)
     x=zeros(length(ground));
     y=zeros(length(ground));
     z=zeros(length(ground));
-    for i=1:length(ground)
+    for i=floor(length(ground)/2):length(ground)
         z(i,:)=ground;
     end
 end

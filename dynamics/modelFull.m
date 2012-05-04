@@ -29,9 +29,9 @@ function xdot = modelFull(t, x, p)
     F = [-p.mu*g;
         0;
         0;
-        disturbance_step(t)*p.ktf;
         missed_bump*disturbance_step(t)*p.ktf;
-        disturbance_step(t-p.back_lag)*p.ktr;
+        missed_bump*disturbance_step(t)*p.ktf;
+        missed_bump*disturbance_step(t-p.back_lag)*p.ktr;
         missed_bump*disturbance_step(t-p.back_lag)*p.ktr;
     ];
     

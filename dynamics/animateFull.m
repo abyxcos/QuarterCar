@@ -53,7 +53,7 @@ function animateFull
     open(video);
 
     frame_time = 0;
-    for i = 1 : length(t)
+    for i = 1 : min(length(t), length(t2))
         % Car 1
         % Calculate the body position
         body_y_r = 0 - f_car.b2*cos(x(i, 2));

@@ -11,6 +11,34 @@ function xdot = modelFull(t, x, p)
 
     global g;
 
+    % Deal with turning
+    y_pos = x(15);
+    yaw = x(16);
+    t_old = x(17);
+    
+    % Are we far enough away yet?
+    % Bump centered at y=0, car width wide
+    if y_pos > p.b1+p.b2
+        % Yes, so return to yaw = 0
+        if yaw > 0
+            turning_speed = p.turning_speed;
+            if turning_speed > p.turning_angle  % Conviently they line up
+                turning_speed = p.turning_angle;
+            end
+            %turning_speed = turning_speed/(t-t_old);
+        end
+        turning_speed = 0;
+    else
+        turning_speed = p.turning_speed;
+            if turning_speed > p.turning_angle  % Conviently they line up
+                turning_speed = p.turning_angle;
+            end
+            turning_speed = -turning_speed;
+            %turning_speed = -turning_speed/(t-t_old);
+    end
+    y_pos = y_pos + p.speed*(t-t_old) * sin(turning_speed);
+    yaw = turning_speed/(t-t_old);
+    
     % Input disturbance matrix
     % Due to car length, the back wheels hit later
     F = [-p.mu*g;
@@ -43,4 +71,8 @@ function xdot = modelFull(t, x, p)
     xdot(12) = accel(5);
     xdot(13) = accel(6);
     xdot(14) = accel(7);
+    xdot(15) = y_pos;
+    xdot(16) = yaw;
+    xdot(17) = x(17);   % Pass t_avoidance back through
+    xdot(18) = t;
 end

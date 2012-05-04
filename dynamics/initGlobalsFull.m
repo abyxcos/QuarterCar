@@ -23,6 +23,8 @@ f_car.b2 = 0.7;
 %f_car.b2 = 0.75;
 f_car.w = f_car.b1 + f_car.b2;
 f_car.turning_radius = 9;   % 30 ft turning radius
+f_car.turning_angle = atan2(f_car.a1+f_car.a2,f_car.turning_radius);
+f_car.turning_speed = pi/6; % 30 degrees/s
 
 % Heights at rest
 f_car.h_body = -0.2163;

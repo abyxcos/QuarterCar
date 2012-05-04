@@ -43,3 +43,5 @@ where $[M]$ are the mass coefficients, $[b]$ are the damping coefficients, and $
 
 Knowing the position and changes in the center of mass of the vehicle, equation \eqref{eq:car_characteristic} may also be used to calculate the inverse dynamics of the system. This allows for a following vehicle to be able to calculate the ground input on the leading vehicle based off it's movements.
 
+Turning using the bicycle model from equation \eqref{eq:bike_model} was implemented on the robots in the simulation. The bicycle model was backed by a simple turn right controller. If the following vehicle detected a disturbance higher than it's threshold value, it attempted to turn right one vehicle width plus a buffer before it hit the obstacle. If there is not enough room available to the right, the controller falls back to the left.
+

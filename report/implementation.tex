@@ -21,3 +21,5 @@ Following this, a second robot was simulated driving a fixed distance behind the
 	\label{fig:naive_convoy}
 \end{figure}
 
+A steering model was then implemented on the robots. The first robot had it's steering fixed to ensure it would drive directly over the obstacle. The following robots then attempted to move right one vehicle width plus a buffer space from the center of the preceding robot. The use of only one vehicle width was chosen as it is assumed that the disturbance the first vehicle hit was small enough for it to not be picked up by sensors, but larger than prudent to blindly drive over (such as potholes.)
+

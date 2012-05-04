@@ -4,8 +4,9 @@ function animateFull
     
     % Start car 1 at t=0
     % Start car 2 with t=n*sec lag
-    [t, x, f_car] = plotFull(0);
-    [t2, x2, f_car] = plotFull(2*13/f_car.speed);
+    [t, x, f_car, t_avoidance] = plotFull(0, 0);
+    [t2, x2, f_car, t_avoidance] = ...
+        plotFull(2*13/f_car.speed, t_avoidance);
     
     figure;
         

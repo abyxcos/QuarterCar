@@ -1,5 +1,5 @@
 % Generate the appropriate plots for the full car model
-function [t, x, f_car] = plotFull(delta_t)
+function [t, x, f_car, t_avoidance] = plotFull(delta_t, t_avoidance)
     %close all;
     
     % Set up enviornment for the full car model
@@ -38,6 +38,17 @@ function [t, x, f_car] = plotFull(delta_t)
         y_p = temp;
         disturbance_front(i) = disturbance_step(t(i));
         disturbance_back(i) = disturbance_step(t(i) - f_car.back_lag);
+        
+        % See if the car in front of us just hit a bump
+        % Only check this if we're the second in line (running on car at
+        % delta_t==0, as we don't have a third car yet.
+        if (delta_t == 0)
+            if max(y_p-y(i-1)) > 0.015 % Maximum error before we avoid
+                if t_avoidance == 0
+                    t_avoidance = t(i);
+                end
+            end
+        end
     end
     
     % Calculate the error between the input and the inverse

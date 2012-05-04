@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ProjFilesArray</key>
+	<array>
+		<dict>
+			<key>DestPath</key>
+			<string>/Users/abyxcos/docs/capstone/high_speed/media/convoying.cmproj/media/4743391050138208270/naive_convoy.avi</string>
+			<key>SourceInfoDict</key>
+			<dict>
+				<key>SourceInfoDict_SrcAliasData</key>
+				<data>
+				AAAAAAISAAIAAAJhdwAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAADLIqJxSCsAAABInAUQbmFpdmVfY29udm95LmF2
+				aQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAEicCcu6ArEAAAAAAAAAAP//
+				//8AAAkgAAAAAAAAAAAAAAAAAAAAEzQ3NDMzOTEwNTAx
+				MzgyMDgyNzAAABAACAAAyyLowQAAABEACAAAy7o68QAA
+				AAEAJABInAUASJuyAEibsABIcdMAK8O2AAWdMAAFnS0A
+				BErIAAC/CQACAHRhdzpVc2VyczoAYWJ5eGNvczoAZG9j
+				czoAY2Fwc3RvbmU6AGhpZ2hfc3BlZWQ6AG1lZGlhOgBj
+				b252b3lpbmcuY21wcm9qOgBtZWRpYToANDc0MzM5MTA1
+				MDEzODIwODI3MDoAbmFpdmVfY29udm95LmF2aQAOACIA
+				EABuAGEAaQB2AGUAXwBjAG8AbgB2AG8AeQAuAGEAdgBp
+				AA8ABgACAGEAdwASAGhVc2Vycy9hYnl4Y29zL2RvY3Mv
+				Y2Fwc3RvbmUvaGlnaF9zcGVlZC9tZWRpYS9jb252b3lp
+				bmcuY21wcm9qL21lZGlhLzQ3NDMzOTEwNTAxMzgyMDgy
+				NzAvbmFpdmVfY29udm95LmF2aQATAAEvAAAVAAIADv//
+				AAA=
+				</data>
+				<key>SourceInfoDict_SrcPath</key>
+				<string>/Users/abyxcos/docs/capstone/high_speed/media/convoying.cmproj/media/4743391050138208270/naive_convoy.avi</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>DestPath</key>
+			<string>/Users/abyxcos/docs/capstone/high_speed/media/convoying.cmproj/media/4743391050138209176/smart_convoy_ugly.avi</string>
+			<key>SourceInfoDict</key>
+			<dict>
+				<key>SourceInfoDict_SrcAliasData</key>
+				<data>
+				AAAAAAIoAAIAAAJhdwAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAADLIqJxSCsAAABInAYVc21hcnRfY29udm95X3Vn
+				bHkuYXZpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAEicDMvI2IwAAAAAAAAAAP//
+				//8AAAkgAAAAAAAAAAAAAAAAAAAAEzQ3NDMzOTEwNTAx
+				MzgyMDkxNzYAABAACAAAyyLowQAAABEACAAAy8kQzAAA
+				AAEAJABInAYASJuyAEibsABIcdMAK8O2AAWdMAAFnS0A
+				BErIAAC/CQACAHlhdzpVc2VyczoAYWJ5eGNvczoAZG9j
+				czoAY2Fwc3RvbmU6AGhpZ2hfc3BlZWQ6AG1lZGlhOgBj
+				b252b3lpbmcuY21wcm9qOgBtZWRpYToANDc0MzM5MTA1
+				MDEzODIwOTE3NjoAc21hcnRfY29udm95X3VnbHkuYXZp
+				AAAOACwAFQBzAG0AYQByAHQAXwBjAG8AbgB2AG8AeQBf
+				AHUAZwBsAHkALgBhAHYAaQAPAAYAAgBhAHcAEgBtVXNl
+				cnMvYWJ5eGNvcy9kb2NzL2NhcHN0b25lL2hpZ2hfc3Bl
+				ZWQvbWVkaWEvY29udm95aW5nLmNtcHJvai9tZWRpYS80
+				NzQzMzkxMDUwMTM4MjA5MTc2L3NtYXJ0X2NvbnZveV91
+				Z2x5LmF2aQAAEwABLwAAFQACAA7//wAA
+				</data>
+				<key>SourceInfoDict_SrcPath</key>
+				<string>/Users/abyxcos/docs/capstone/high_speed/media/convoying.cmproj/media/4743391050138209176/smart_convoy_ugly.avi</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

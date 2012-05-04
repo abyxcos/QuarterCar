@@ -7,14 +7,15 @@
 %     p - The model parameters
 % Returns:
 %     The xdot for the model in its current state
-function xdot = modelFull(t, x, p)
+function [xdot, qdot] = modelFull(t, x, p, q)
 
     global g;
 
     % Deal with turning
-    y_pos = x(15);
-    yaw = x(16);
-    t_old = x(17);
+    y_pos = q(1);
+    yaw = q(2);
+    y_avoidance = q(3);
+    t_old = q(4);
     
     % Are we far enough away yet?
     % Bump centered at y=0, car width wide
@@ -36,6 +37,7 @@ function xdot = modelFull(t, x, p)
             turning_speed = -turning_speed;
             %turning_speed = -turning_speed/(t-t_old);
     end
+    turning_speed = 0;
     y_pos = y_pos + p.speed*(t-t_old) * sin(turning_speed);
     yaw = turning_speed/(t-t_old);
     
@@ -56,7 +58,8 @@ function xdot = modelFull(t, x, p)
     accel = p.m \ (F - p.b*vel - p.k*pos);
     
     % Package the data in the output
-    xdot = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    %xdot = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    xdot = zeros(14,1);
     xdot(1) = vel(1);
     xdot(2) = vel(2);
     xdot(3) = vel(3);
@@ -71,8 +74,8 @@ function xdot = modelFull(t, x, p)
     xdot(12) = accel(5);
     xdot(13) = accel(6);
     xdot(14) = accel(7);
-    xdot(15) = y_pos;
-    xdot(16) = yaw;
-    xdot(17) = x(17);   % Pass t_avoidance back through
-    xdot(18) = t;
+    qdot(1) = y_pos;
+    qdot(2) = yaw;
+    qdot(3) = q(3);   % Pass t_avoidance back through
+    qdot(4) = t;
 end
